@@ -16,5 +16,3 @@ A modern, responsive portfolio website built with plain HTML, CSS, and vanilla J
 1. Extract the ZIP file to a folder of your choice
 2. Open `index.html` in your web browser
 3. That's it! No build process or dependencies required
-
-## File Structure
