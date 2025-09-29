@@ -5,7 +5,7 @@ A modern, responsive portfolio website built with plain HTML, CSS, and vanilla J
 ## Features
 
 - Responsive design that works on all devices
-- Light/dark theme toggle with localStorage persistence
+- Light/dark theme toggle with localStorage persistence (default: light)
 - Smooth scrolling navigation with active section highlighting
 - Animated elements with fade-in effects
 - Contact form with validation
