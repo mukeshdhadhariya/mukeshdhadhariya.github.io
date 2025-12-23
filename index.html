@@ -1,71 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mukesh's Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mukesh Dhadhariya | Software Engineer</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- Navbar -->
-    <nav id="navbar">
-        <div class="logo">Mukesh</div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
 
-    <!-- Home Section -->
-    <section id="home" class="section">
-        <h1>Hi, I'm Mukesh</h1>
-        <p>I'm a web developer</p>
-        <button onclick="scrollToSection('contact')">Hire Me</button>
-    </section>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">Mukesh</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-    <!-- About Section -->
-    <section id="about" class="section">
-        <h2>About Me</h2>
-        <p>I am a passionate web developer with experience in HTML, CSS, and JavaScript.</p>
-    </section>
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <h1 class="fade-in">Mukesh Dhadhariya</h1>
+    <p class="typing">Software Engineer | MERN | AI/ML | System Design</p>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section">
-        <h2>My Projects</h2>
-        <div class="projects-container">
-            <div class="project-card">
-                <h3>Project 1</h3>
-                <p>Simple web project description</p>
-            </div>
-            <div class="project-card">
-                <h3>Project 2</h3>
-                <p>Another project description</p>
-            </div>
-            <div class="project-card">
-                <h3>Project 3</h3>
-                <p>Another project description</p>
-            </div>
-        </div>
-    </section>
+    <div class="hero-buttons">
+      <a href="#projects" class="btn">View Projects</a>
+      <a href="#contact" class="btn outline">Hire Me</a>
+    </div>
+  </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-        <h2>Contact Me</h2>
-        <form id="contact-form">
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Your Message" required></textarea>
-            <button type="submit">Send</button>
-        </form>
-    </section>
+  <!-- About -->
+  <section id="about" class="section reveal">
+    <h2>About Me</h2>
+    <p class="about-text">
+      I am a <strong>Full-Stack Software Engineer</strong> specializing in 
+      <strong>MERN Stack, Next.js, AI/ML</strong> and scalable system design.  
+      I love building real-world products like real-time systems, AI tools, and developer platforms.
+    </p>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Mukesh Dhadhariya. All Rights Reserved.</p>
-    </footer>
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>🎓 Education</h3>
+        <p>B.Tech – Computer Science Engineering</p>
+        <p>IIIT Bhagalpur (2023 – 2027)</p>
+      </div>
 
-    <script src="script.js"></script>
+      <div class="about-card">
+        <h3>🧠 Skills</h3>
+        <p>JavaScript, TypeScript, React, Next.js</p>
+        <p>Node.js, Express, MongoDB, PostgreSQL</p>
+        <p>AI/ML, LangChain, Docker, Kubernetes</p>
+      </div>
+
+      <div class="about-card">
+        <h3>🏆 Achievements</h3>
+        <p>3⭐ CodeChef (1600+)</p>
+        <p>Coding Ninjas Slayground Level 2</p>
+        <p>Mentor to 20+ students</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section dark reveal">
+    <h2>Projects</h2>
+
+    <div class="projects-container">
+      <div class="project-card">
+        <h3>CyberArena</h3>
+        <p>Real-time attacker vs defender cyber training platform using Socket.IO, Docker & Kubernetes.</p>
+      </div>
+
+      <div class="project-card">
+        <h3>AI Chatbot (Neha)</h3>
+        <p>Human-like AI chatbot using OpenAI API, MCP server & memory context.</p>
+      </div>
+
+      <div class="project-card">
+        <h3>Rajasthan Digital Platform</h3>
+        <p>Web platform showcasing Rajasthan culture, food, tourism & marble commerce.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section reveal">
+    <h2>Connect With Me</h2>
+
+    <div class="social-links">
+      <a href="https://github.com/your-github" target="_blank">GitHub</a>
+      <a href="https://codeforces.com/profile/your-handle" target="_blank">Codeforces</a>
+      <a href="https://linkedin.com/in/your-profile" target="_blank">LinkedIn</a>
+      <a href="https://instagram.com/your-id" target="_blank">Instagram</a>
+      <a href="mailto:yourmail@gmail.com">Email</a>
+    </div>
+
+    <form id="contact-form">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 Mukesh Dhadhariya | Built with ❤️</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
