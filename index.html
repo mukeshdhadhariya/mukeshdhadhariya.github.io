@@ -3,109 +3,403 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mukesh Dhadhariya | Software Engineer</title>
+  <title>Mukesh Dhadhariya | Full Stack Software Engineer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="theme-toggle">
+    <i class="fas fa-moon"></i>
+  </button>
+
   <!-- Navbar -->
   <nav class="navbar">
-    <div class="logo">Mukesh</div>
-    <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <div class="nav-container">
+      <div class="logo">
+        <span class="logo-letter">M</span>ukesh
+      </div>
+      <ul class="nav-links">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="codingstats.html" class="nav-link">Coding Stats</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
   </nav>
 
-  <!-- Hero -->
+  <!-- Hero Section -->
   <section id="home" class="hero">
-    <h1 class="fade-in">Mukesh Dhadhariya</h1>
-    <p class="typing">Software Engineer | MERN | AI/ML | System Design</p>
-
-    <div class="hero-buttons">
-      <a href="#projects" class="btn">View Projects</a>
-      <a href="#contact" class="btn outline">Hire Me</a>
+    <div class="stars"></div>
+    <div class="hero-content">
+      <div class="greeting">Hello 👋, I'm</div>
+      <h1 class="hero-title">Mukesh Dhadhariya</h1>
+      <p class="hero-subtitle">Full Stack Software Engineer | MERN | AI/ML | System Design</p>
+      <p class="hero-description">I build scalable, production-grade applications with modern web technologies and solve complex problems with elegant solutions.</p>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn btn-primary">
+          <span>View My Work</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+        <a href="resume.pdf" download class="btn btn-secondary">
+          <i class="fas fa-download"></i>
+          <span>Download Resume</span>
+        </a>
+      </div>
+      <div class="social-icons">
+        <a href="https://github.com/mukeshdhadhariya" target="_blank" class="social-icon" title="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://linkedin.com/in/mukesh-dhadhariya" target="_blank" class="social-icon" title="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://codeforces.com/profile/mukesh_coder" target="_blank" class="social-icon" title="CodeForces">
+          <i class="fas fa-code"></i>
+        </a>
+        <a href="mailto:mukeshdhadhariya1@gmail.com" class="social-icon" title="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+    <div class="scroll-down">
+      <span>Scroll to explore</span>
+      <i class="fas fa-chevron-down"></i>
     </div>
   </section>
 
-  <!-- About -->
-  <section id="about" class="section reveal">
-    <h2>About Me</h2>
-    <p class="about-text">
-      I am a <strong>Full-Stack Software Engineer</strong> specializing in 
-      <strong>MERN Stack, Next.js, AI/ML</strong> and scalable system design.  
-      I love building real-world products like real-time systems, AI tools, and developer platforms.
-    </p>
-
-    <div class="about-grid">
-      <div class="about-card">
-        <h3>🎓 Education</h3>
-        <p>B.Tech – Computer Science Engineering</p>
-        <p>IIIT Bhagalpur (2023 – 2027)</p>
+  <!-- About Section -->
+  <section id="about" class="section about reveal">
+    <div class="container">
+      <div class="section-header">
+        <h2>About Me</h2>
+        <div class="header-line"></div>
       </div>
+      
+      <div class="about-content">
+        <div class="about-text">
+          <p>I'm a passionate <strong>Full-Stack Software Engineer</strong> from IIIT Bhagalpur with a strong foundation in building modern web applications and solving complex technical challenges. With expertise in the <strong>MERN stack</strong>, <strong>Next.js</strong>, and <strong>AI/ML</strong>, I create robust, scalable solutions that deliver real-world impact.</p>
+          <p>I worked as a <strong>Software Developer Freelancer at Workafy</strong>, where I design and implement responsive UI components while enhancing user experience. I'm passionate about clean code, system design, and continuous learning.</p>
+        </div>
+        
+        <div class="about-grid">
+          <div class="about-card glass-effect">
+            <div class="card-icon">🎓</div>
+            <h3>Education</h3>
+            <p class="card-title">B.Tech CSE</p>
+            <p class="card-subtitle">IIIT Bhagalpur</p>
+            <p class="card-detail">2023 – 2027 | CGPA: 7.37</p>
+          </div>
 
-      <div class="about-card">
-        <h3>🧠 Skills</h3>
-        <p>JavaScript, TypeScript, React, Next.js</p>
-        <p>Node.js, Express, MongoDB, PostgreSQL</p>
-        <p>AI/ML, LangChain, Docker, Kubernetes</p>
-      </div>
+          <div class="about-card glass-effect">
+            <div class="card-icon">💼</div>
+            <h3>Experience</h3>
+            <p class="card-title">Software Developer</p>
+            <p class="card-subtitle">Workafy (Freelancer)</p>
+            <p class="card-detail">Oct 2025 – Dec 2025</p>
+          </div>
 
-      <div class="about-card">
-        <h3>🏆 Achievements</h3>
-        <p>3⭐ CodeChef (1600+)</p>
-        <p>Coding Ninjas Slayground Level 2</p>
-        <p>Mentor to 20+ students</p>
-      </div>
-    </div>
-  </section>
+          <div class="about-card glass-effect">
+            <div class="card-icon">🏆</div>
+            <h3>Achievements</h3>
+            <p class="card-title">3⭐ CodeChef (1610)</p>
+            <p class="card-subtitle">Software Engineering</p>
+            <p class="card-detail">500+ Users Impacted</p>
+          </div>
 
-  <!-- Projects -->
-  <section id="projects" class="section dark reveal">
-    <h2>Projects</h2>
-
-    <div class="projects-container">
-      <div class="project-card">
-        <h3>CyberArena</h3>
-        <p>Real-time attacker vs defender cyber training platform using Socket.IO, Docker & Kubernetes.</p>
-      </div>
-
-      <div class="project-card">
-        <h3>AI Chatbot (Neha)</h3>
-        <p>Human-like AI chatbot using OpenAI API, MCP server & memory context.</p>
-      </div>
-
-      <div class="project-card">
-        <h3>Rajasthan Digital Platform</h3>
-        <p>Web platform showcasing Rajasthan culture, food, tourism & marble commerce.</p>
+          <div class="about-card glass-effect">
+            <div class="card-icon">📍</div>
+            <h3>Location</h3>
+            <p class="card-title">Nagaur, Rajasthan</p>
+            <p class="card-subtitle">India (341520)</p>
+            <p class="card-detail">+91 9783609918</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Contact -->
-  <section id="contact" class="section reveal">
-    <h2>Connect With Me</h2>
+  <!-- Skills Section -->
+  <section id="skills" class="section skills reveal">
+    <div class="container">
+      <div class="section-header">
+        <h2>Technical Skills</h2>
+        <div class="header-line"></div>
+      </div>
 
-    <div class="social-links">
-      <a href="https://github.com/your-github" target="_blank">GitHub</a>
-      <a href="https://codeforces.com/profile/your-handle" target="_blank">Codeforces</a>
-      <a href="https://linkedin.com/in/your-profile" target="_blank">LinkedIn</a>
-      <a href="https://instagram.com/your-id" target="_blank">Instagram</a>
-      <a href="mailto:yourmail@gmail.com">Email</a>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3>Languages</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">HTML/CSS</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>Frontend</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">React.js</span>
+            <span class="skill-tag">Next.js</span>
+            <span class="skill-tag">Shadcn/UI</span>
+            <span class="skill-tag">Tailwind CSS</span>
+            <span class="skill-tag">Vite</span>
+            <span class="skill-tag">Bootstrap</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>Backend & Databases</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">Express.js</span>
+            <span class="skill-tag">MongoDB</span>
+            <span class="skill-tag">REST APIs</span>
+            <span class="skill-tag">JWT</span>
+            <span class="skill-tag">Socket.IO</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>Tools & Technologies</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Kubernetes</span>
+            <span class="skill-tag">AWS (EC2, IAM)</span>
+            <span class="skill-tag">Git/GitHub</span>
+            <span class="skill-tag">Linux</span>
+            <span class="skill-tag">Postman</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>AI/ML</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">LightGBM</span>
+            <span class="skill-tag">OpenAI API</span>
+            <span class="skill-tag">LangChain</span>
+            <span class="skill-tag">ML Regression</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>Coursework</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">DSA</span>
+            <span class="skill-tag">OS</span>
+            <span class="skill-tag">DBMS</span>
+            <span class="skill-tag">Computer Networks</span>
+            <span class="skill-tag">Software Engineering</span>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <form id="contact-form">
-      <input type="text" placeholder="Your Name" required />
-      <input type="email" placeholder="Your Email" required />
-      <textarea placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
   </section>
 
-  <footer>
-    <p>© 2025 Mukesh Dhadhariya | Built with ❤️</p>
+  <!-- Projects Section -->
+  <section id="projects" class="section projects reveal">
+    <div class="container">
+      <div class="section-header">
+        <h2>Featured Projects</h2>
+        <div class="header-line"></div>
+      </div>
+
+      <div class="projects-container">
+        <div class="project-card glass-effect">
+          <div class="project-badge">Production</div>
+          <h3>Cloud CTF Platform</h3>
+          <p class="project-tech">MERN | AWS EC2 | IAM | ALB | Packer | SQL</p>
+          <p class="project-description">Architected and deployed a multi-user, production-grade CTF platform trusted by 500+ users, dynamically provisioning 2000+ isolated AWS EC2 challenge environments with secure IAM-based access, real-time scoring, and auto-scaling infrastructure.</p>
+          <div class="project-stats">
+            <span><i class="fas fa-users"></i> 500+ Users</span>
+            <span><i class="fas fa-server"></i> 2000+ Environments</span>
+          </div>
+        </div>
+
+        <div class="project-card glass-effect">
+          <div class="project-badge">AI/ML</div>
+          <h3>AI-Powered Smart Farming Platform</h3>
+          <p class="project-tech">MERN | LightGBM | AWS | Docker | ML</p>
+          <p class="project-description">Developed an AI-driven agriculture platform using LightGBM regression to predict crop profitability based on soil pH, water quality, climate and mineral composition, with integrated seed sourcing and cultivation guidance.</p>
+          <div class="project-stats">
+            <span><i class="fas fa-leaf"></i> Crop Analytics</span>
+            <span><i class="fas fa-chart-line"></i> Profitability Pred.</span>
+          </div>
+        </div>
+
+        <div class="project-card glass-effect">
+          <div class="project-badge">Full Stack</div>
+          <h3>Social Media Platform</h3>
+          <p class="project-tech">MERN | Shadcn/UI | Socket.IO | Cloudinary | JWT</p>
+          <p class="project-description">Built a scalable social media application with secure JWT authentication, real-time messaging using Socket.IO and optimized front-end architecture — cutting load times by 35% and increasing system responsiveness by 40%.</p>
+          <div class="project-stats">
+            <span><i class="fas fa-bolt"></i> 35% Faster</span>
+            <span><i class="fas fa-message"></i> Real-time Chat</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements Section -->
+  <section class="section achievements reveal">
+    <div class="container">
+      <div class="section-header">
+        <h2>Achievements & Recognition</h2>
+        <div class="header-line"></div>
+      </div>
+
+      <div class="achievements-grid">
+        <div class="achievement-item glass-effect">
+          <div class="achievement-icon"><i class="fas fa-trophy"></i></div>
+          <h3>Tata Imagination Challenge 2024</h3>
+          <p>Semifinalist - Selected among top national participants for presenting a data-driven solution</p>
+        </div>
+
+        <div class="achievement-item glass-effect">
+          <div class="achievement-icon"><i class="fas fa-star"></i></div>
+          <h3>Opcode 2025 - 9th Rank (Institute)</h3>
+          <p>Strong project execution and technical implementation in open-source hackathon</p>
+        </div>
+
+        <div class="achievement-item glass-effect">
+          <div class="achievement-icon"><i class="fas fa-code"></i></div>
+          <h3>Hacktoberfest Supercontributor 2025</h3>
+          <p>Completed 15+ contributions and mentored developers in open-source collaboration</p>
+        </div>
+
+        <div class="achievement-item glass-effect">
+          <div class="achievement-icon"><i class="fas fa-chart-line"></i></div>
+          <h3>CodeChef 3⭐ (1610 Rating)</h3>
+          <p>Top 1000 globally in multiple contests with strong algorithmic problem-solving</p>
+        </div>
+
+        <div class="achievement-item glass-effect">
+          <div class="achievement-icon"><i class="fas fa-book"></i></div>
+          <h3>Student Mentor</h3>
+          <p>Mentored 80+ students in DSA and programming fundamentals at IIIT Bhagalpur</p>
+        </div>
+
+        <div class="achievement-item glass-effect">
+          <div class="achievement-icon"><i class="fas fa-crown"></i></div>
+          <h3>Top Participant Ranking</h3>
+          <p>Ranked among top in Coding Ninjas Slayground 2.0 and Algorithmia ICPC-Style Challenge</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- View Coding Stats Section -->
+  <section class="section coding-stats-cta reveal">
+    <div class="container">
+      <div class="cta-card-large glass-effect">
+        <div class="cta-content">
+          <i class="fas fa-code icon-large"></i>
+          <h2>View My Coding Profile</h2>
+          <p>Explore my detailed competitive programming statistics, real-time data from CodeChef, CodeForces, and more</p>
+          <div class="cta-buttons-group">
+            <a href="codingstats.html" class="btn btn-primary">
+              <i class="fas fa-chart-bar"></i>
+              <span>View Detailed Stats</span>
+            </a>
+            <a href="#about" class="btn btn-secondary">
+              <i class="fas fa-info-circle"></i>
+              <span>Back to Top</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section contact reveal">
+    <div class="container">
+      <div class="section-header">
+        <h2>Let's Connect</h2>
+        <div class="header-line"></div>
+        <p class="subtitle">Feel free to reach out for collaborations or just a friendly hello</p>
+      </div>
+
+      <div class="contact-content">
+        <div class="contact-info">
+          <div class="info-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h4>Email</h4>
+              <a href="mailto:mukeshdhadhariya1@gmail.com">mukeshdhadhariya1@gmail.com</a>
+            </div>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <h4>Phone</h4>
+              <a href="tel:+919783609918">+91 9783609918</a>
+            </div>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h4>Location</h4>
+              <p>Nagaur, Rajasthan, India</p>
+            </div>
+          </div>
+        </div>
+
+        <form id="contact-form" class="contact-form glass-effect">
+          <input type="text" id="name" placeholder="Your Name" required />
+          <input type="email" id="email" placeholder="Your Email" required />
+          <select id="subject" required>
+            <option value="">Select Subject</option>
+            <option value="freelance">Freelance Project</option>
+            <option value="collaboration">Collaboration</option>
+            <option value="mentorship">Mentorship</option>
+            <option value="other">Other Inquiry</option>
+          </select>
+          <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+          <button type="submit" class="btn btn-primary">
+            <span>Send Message</span>
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+
+      <div class="social-links">
+        <a href="https://github.com/mukeshdhadhariya" target="_blank" class="social-link" title="GitHub">
+          <i class="fab fa-github"></i>
+          <span>GitHub</span>
+        </a>
+        <a href="https://linkedin.com/in/mukesh-dhadhariya" target="_blank" class="social-link" title="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+          <span>LinkedIn</span>
+        </a>
+        <a href="https://codeforces.com/profile/mukesh_coder" target="_blank" class="social-link" title="CodeForces">
+          <i class="fas fa-code"></i>
+          <span>CodeForces</span>
+        </a>
+        <a href="https://instagram.com/mukesh_dhadhariya" target="_blank" class="social-link" title="Instagram">
+          <i class="fab fa-instagram"></i>
+          <span>Instagram</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Mukesh Dhadhariya. All rights reserved.</p>
+    </div>
   </footer>
 
   <script src="script.js"></script>
