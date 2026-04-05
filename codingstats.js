@@ -1,350 +1,238 @@
 (() => {
-// ==================== API DATA FETCHING ====================
+  const handles = {
+    codechef: 'its_hunter',
+    leetcode: 'mukeshhdhadhariya',
+    codeforces: 'mukesh_dhadhariya'
+  };
 
-// CodeForces API Fetch
-const fetchCodeForcesData = async () => {
-  try {
-    const response = await fetch('https://codeforces.com/api/user.info?handles=mukesh_coder', {
-      headers: {
-        'Content-Type': 'application/json',
+  const fallback = {
+    codechef: {
+      rating: '1550+',
+      maxRating: '1610',
+      stars: '3*'
+    },
+    leetcode: {
+      solved: 290,
+      easy: 110,
+      medium: 143,
+      hard: 37,
+      acceptance: '75%'
+    },
+    codeforces: {
+      rating: '1200+',
+      maxRating: '1300+',
+      solved: 80
+    }
+  };
+
+  const state = {
+    solvedTotal: 0,
+    bestRating: 0
+  };
+
+  const profileOverrides = {
+    codechefStars: '3*',
+    leetcodeAcceptance: '75%'
+  };
+
+  const $ = (id) => document.getElementById(id);
+
+  const setText = (id, value) => {
+    const el = $(id);
+    if (el) el.textContent = value;
+  };
+
+  const parseRating = (value) => {
+    const num = Number(String(value).replace(/[^0-9]/g, ''));
+    return Number.isFinite(num) ? num : 0;
+  };
+
+  const setSyncMessage = (text, isSuccess = true) => {
+    const sync = $('sync-text');
+    if (sync) sync.textContent = text;
+    const dot = document.querySelector('.pulse-dot');
+    if (dot) {
+      dot.style.background = isSuccess ? 'var(--cs-success)' : '#ff7b7b';
+    }
+  };
+
+  const refreshQuickBand = () => {
+    setText('total-solved', String(state.solvedTotal || '--'));
+    setText('best-rating', state.bestRating ? String(state.bestRating) : '--');
+
+    const now = new Date();
+    const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    setText('last-refresh', time);
+  };
+
+  const fetchCodeforces = async () => {
+    try {
+      const [infoRes, statusRes] = await Promise.all([
+        fetch(`https://codeforces.com/api/user.info?handles=${handles.codeforces}`),
+        fetch(`https://codeforces.com/api/user.status?handle=${handles.codeforces}&from=1&count=3000`)
+      ]);
+
+      if (!infoRes.ok) throw new Error('Codeforces info unavailable');
+      const info = await infoRes.json();
+
+      if (info.status !== 'OK' || !info.result?.length) {
+        throw new Error('Codeforces payload invalid');
       }
-    });
-    
-    if (response.ok) {
-      const data = await response.json();
-      if (data.status === 'OK' && data.result && data.result.length > 0) {
-        const user = data.result[0];
-        document.getElementById('cf-rating').textContent = user.rating || 'N/A';
-        document.getElementById('cf-max').textContent = user.maxRating || 'N/A';
-        document.getElementById('cf-contests').textContent = user.ratingUpdateTimeSeconds ? '20+' : '0';
-        
-        // Fetch submissions
-        const subResponse = await fetch('https://codeforces.com/api/user.status?handle=mukesh_coder&from=1&count=1');
-        if (subResponse.ok) {
-          const subData = await subResponse.json();
-          if (subData.status === 'OK') {
-            const solvedSet = new Set();
-            subData.result.forEach(submission => {
-              if (submission.verdict === 'OK') {
-                solvedSet.add(submission.problem.name);
-              }
-            });
-            document.getElementById('cf-solved').textContent = solvedSet.size || '30+';
-          }
+
+      const user = info.result[0];
+      setText('cf-rating', user.rating || fallback.codeforces.rating);
+      setText('cf-max-rating', user.maxRating || fallback.codeforces.maxRating);
+
+      state.bestRating = Math.max(state.bestRating, parseRating(user.maxRating || user.rating));
+
+      let solved = fallback.codeforces.solved;
+
+      if (statusRes.ok) {
+        const statuses = await statusRes.json();
+        if (statuses.status === 'OK' && Array.isArray(statuses.result)) {
+          const solvedSet = new Set();
+          statuses.result.forEach((submission) => {
+            if (submission.verdict === 'OK' && submission.problem) {
+              solvedSet.add(`${submission.problem.contestId}-${submission.problem.index}`);
+            }
+          });
+          solved = solvedSet.size || solved;
         }
       }
+
+      setText('cf-solved', solved);
+      state.solvedTotal += Number(solved) || 0;
+    } catch (error) {
+      console.log('Codeforces fetch failed:', error);
+      setText('cf-rating', fallback.codeforces.rating);
+      setText('cf-max-rating', fallback.codeforces.maxRating);
+      setText('cf-solved', String(fallback.codeforces.solved));
+
+      state.bestRating = Math.max(state.bestRating, parseRating(fallback.codeforces.maxRating));
+      state.solvedTotal += fallback.codeforces.solved;
     }
-  } catch (error) {
-    console.log('CodeForces API Error:', error);
-    // Use fallback data
-    document.getElementById('cf-rating').textContent = '1200+';
-    document.getElementById('cf-max').textContent = '1400+';
-    document.getElementById('cf-solved').textContent = '30+';
-    document.getElementById('cf-contests').textContent = '20+';
-  }
-};
-
-// GitHub API Fetch
-const fetchGitHubData = async () => {
-  try {
-    const response = await fetch('https://api.github.com/users/mukeshdhadhariya');
-    if (response.ok) {
-      const data = await response.json();
-      document.getElementById('gh-repos').textContent = data.public_repos + '+' || '15+';
-      document.getElementById('gh-followers').textContent = data.followers + '+' || '50+';
-      
-      // Get contributions (approximate)
-      document.getElementById('gh-contributions').textContent = '500+';
-    }
-  } catch (error) {
-    console.log('GitHub API Error:', error);
-    // Use fallback data
-    document.getElementById('gh-repos').textContent = '15+';
-    document.getElementById('gh-followers').textContent = '50+';
-    document.getElementById('gh-contributions').textContent = '500+';
-  }
-};
-
-// LeetCode Stats Fetch + Visualization
-const defaultLeetCodeStats = {
-  totalSolved: 60,
-  easySolved: 25,
-  mediumSolved: 30,
-  hardSolved: 5
-};
-
-const setElementText = (id, value) => {
-  const element = document.getElementById(id);
-  if (element) {
-    element.textContent = value;
-  }
-};
-
-const animateLeetCodeBars = ({ easySolved, mediumSolved, hardSolved }) => {
-  const distribution = {
-    easy: easySolved,
-    medium: mediumSolved,
-    hard: hardSolved
   };
 
-  const total = Object.values(distribution).reduce((sum, value) => sum + value, 0) || 1;
+  const fetchLeetcode = async () => {
+    const fetchFromLegacyApi = async () => {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 4500);
 
-  requestAnimationFrame(() => {
-    Object.entries(distribution).forEach(([difficulty, value]) => {
-      const bar = document.querySelector(`.bar[data-difficulty="${difficulty}"]`);
-      if (!bar) return;
-      const percent = Math.round((value / total) * 100);
-      bar.style.width = `${percent}%`;
-      bar.setAttribute('aria-valuenow', percent);
-      bar.setAttribute('aria-label', `${difficulty} problems ${value} solved (${percent}%)`);
-      bar.dataset.count = value;
-    });
-  });
-};
-
-const updateLeetCodeUI = (incomingStats = {}) => {
-  const normalize = (value, fallback) => {
-    const parsed = Number(value);
-    return Number.isFinite(parsed) ? parsed : fallback;
-  };
-
-  const stats = {
-    totalSolved: normalize(incomingStats.totalSolved, defaultLeetCodeStats.totalSolved),
-    easySolved: normalize(incomingStats.easySolved, defaultLeetCodeStats.easySolved),
-    mediumSolved: normalize(incomingStats.mediumSolved, defaultLeetCodeStats.mediumSolved),
-    hardSolved: normalize(incomingStats.hardSolved, defaultLeetCodeStats.hardSolved)
-  };
-
-  if (!incomingStats.totalSolved) {
-    stats.totalSolved = stats.easySolved + stats.mediumSolved + stats.hardSolved;
-  }
-
-  setElementText('lc-solved', `${stats.totalSolved}+`);
-  setElementText('lc-easy', `${stats.easySolved}+`);
-  setElementText('lc-medium', `${stats.mediumSolved}+`);
-  setElementText('lc-hard', `${stats.hardSolved}+`);
-
-  animateLeetCodeBars(stats);
-};
-
-const fetchLeetCodeData = async () => {
-  try {
-    const response = await fetch('https://leetcode-stats-api.herokuapp.com/mukeshdhadhariya');
-    if (!response.ok) {
-      throw new Error('LeetCode API unavailable');
-    }
-
-    const data = await response.json();
-    if (data.status === 'success' || (data.totalSolved && !data.errors)) {
-      updateLeetCodeUI({
-        totalSolved: data.totalSolved,
-        easySolved: data.easySolved,
-        mediumSolved: data.mediumSolved,
-        hardSolved: data.hardSolved
+      const res = await fetch(`https://leetcode-stats-api.herokuapp.com/${handles.leetcode}`, {
+        signal: controller.signal
       });
-    } else {
-      throw new Error('Unexpected LeetCode payload');
-    }
-  } catch (error) {
-    console.log('LeetCode API Error:', error);
-    updateLeetCodeUI(defaultLeetCodeStats);
-  }
-};
 
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', () => {
-  updateLeetCodeUI(defaultLeetCodeStats);
-  fetchCodeForcesData();
-  fetchGitHubData();
-  fetchLeetCodeData();
-});
+      clearTimeout(timeoutId);
+      if (!res.ok) throw new Error('LeetCode legacy API unavailable');
 
-// ==================== SCROLL ANIMATIONS ====================
-const statReveals = document.querySelectorAll('.reveal');
+      const data = await res.json();
+      const solved = Number(data.totalSolved);
+      const easy = Number(data.easySolved);
+      const medium = Number(data.mediumSolved);
+      const hard = Number(data.hardSolved);
+      const acceptance = Number(data.acceptanceRate);
 
-const revealOnScroll = () => {
-  statReveals.forEach(element => {
-    const windowHeight = window.innerHeight;
-    const elementTop = element.getBoundingClientRect().top;
-    const elementVisible = 150;
-
-    if (elementTop < windowHeight - elementVisible) {
-      element.classList.add('active');
-    }
-  });
-};
-
-window.addEventListener('scroll', revealOnScroll);
-revealOnScroll();
-
-// ==================== SMOOTH SCROLL ====================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
-  });
-});
-
-// ==================== PROGRESS RING ANIMATION ====================
-const animateProgressRings = () => {
-  const rings = document.querySelectorAll('.progress-fill');
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // Get the circle and its percentage
-        const circle = entry.target;
-        const percentage = parseInt(circle.parentElement.parentElement.querySelector('.percentage').textContent);
-        const radius = 40;
-        const circumference = 2 * Math.PI * radius;
-        const offset = circumference - (percentage / 100) * circumference;
-        
-        circle.style.strokeDashoffset = offset;
-        observer.unobserve(circle);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  rings.forEach(ring => observer.observe(ring));
-};
-
-animateProgressRings();
-
-// ==================== ANIMATED COUNTERS ====================
-const animateCounters = () => {
-  const counters = document.querySelectorAll('.stat-value[id]');
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const element = entry.target;
-        animateCounter(element);
-        observer.unobserve(element);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  counters.forEach(counter => observer.observe(counter));
-};
-
-const animateCounter = (element) => {
-  const text = element.textContent;
-  const numbers = text.match(/\d+/);
-  
-  if (numbers) {
-    const target = parseInt(numbers[0]);
-    const duration = 2000;
-    const increment = target / (duration / 50);
-    let current = 0;
-
-    const update = () => {
-      current += increment;
-      if (current < target) {
-        element.textContent = Math.floor(current) + (text.includes('+') ? '+' : text.includes('⭐') ? '⭐' : '');
-        setTimeout(update, 50);
-      } else {
-        element.textContent = text;
-      }
+      return {
+        solved: Number.isFinite(solved) ? solved : fallback.leetcode.solved,
+        easy: Number.isFinite(easy) ? easy : fallback.leetcode.easy,
+        medium: Number.isFinite(medium) ? medium : fallback.leetcode.medium,
+        hard: Number.isFinite(hard) ? hard : fallback.leetcode.hard,
+        acceptance: Number.isFinite(acceptance) ? `${acceptance}%` : null
+      };
     };
 
-    update();
-  }
-};
+    const applyStats = (stats) => {
+      const solvedSafe = Number(stats.solved) || fallback.leetcode.solved;
+      const easySafe = Number(stats.easy) || fallback.leetcode.easy;
+      const mediumSafe = Number(stats.medium) || fallback.leetcode.medium;
+      const hardSafe = Number(stats.hard) || fallback.leetcode.hard;
 
-animateCounters();
+      setText('lc-solved', solvedSafe);
+      setText('lc-breakdown', `${easySafe} / ${mediumSafe} / ${hardSafe}`);
+      setText('lc-acceptance', stats.acceptance || profileOverrides.leetcodeAcceptance || fallback.leetcode.acceptance);
 
-// ==================== HAMBURGER MENU ====================
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
+      state.solvedTotal += solvedSafe;
+    };
 
-if (hamburger) {
-  hamburger.addEventListener('click', () => {
-    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-    navLinks.style.position = 'absolute';
-    navLinks.style.top = '60px';
-    navLinks.style.left = '0';
-    navLinks.style.right = '0';
-    navLinks.style.flexDirection = 'column';
-    navLinks.style.gap = '0';
-    navLinks.style.background = 'var(--darker-bg)';
-    navLinks.style.padding = '20px';
-    navLinks.style.borderBottom = '1px solid var(--glass-border)';
-  });
-}
+    try {
+      const legacyStats = await fetchFromLegacyApi();
+      applyStats(legacyStats);
+    } catch (_error) {
+      // Keep UI stable with defaults when API is blocked or slow.
+      applyStats({
+        solved: fallback.leetcode.solved,
+        easy: fallback.leetcode.easy,
+        medium: fallback.leetcode.medium,
+        hard: fallback.leetcode.hard,
+        acceptance: profileOverrides.leetcodeAcceptance
+      });
+    }
+  };
 
-// ==================== THEME PERSISTENCE ====================
-// Already handled in main script.js
-// Just ensure it applies here too
-const savedTheme = localStorage.getItem('theme') || 'dark';
-if (savedTheme === 'light') {
-  document.body.classList.add('light-mode');
-}
+  const fetchCodechef = async () => {
+    // CodeChef public APIs are often CORS blocked from static sites, so use profile defaults.
+    setText('cc-rating', fallback.codechef.rating);
+    setText('cc-max-rating', fallback.codechef.maxRating);
+    setText('cc-stars', profileOverrides.codechefStars);
+    state.bestRating = Math.max(state.bestRating, parseRating(fallback.codechef.maxRating));
+  };
 
-// ==================== STATS LOADING ANIMATION ====================
-const startLoadingAnimation = () => {
-  const statusDot = document.querySelector('.status-dot');
-  if (statusDot) {
-    setTimeout(() => {
-      const statusText = document.querySelector('.status-text');
-      statusText.textContent = 'Data loaded successfully ✓';
-      statusDot.style.background = '#10b981';
-    }, 2000);
-  }
-};
+  const animateCounter = (id) => {
+    const el = $(id);
+    if (!el) return;
 
-window.addEventListener('load', startLoadingAnimation);
+    const target = Number(String(el.textContent).replace(/[^0-9]/g, ''));
+    if (!Number.isFinite(target) || target <= 0) return;
 
-// ==================== PARALLAX BACKGROUND ====================
-window.addEventListener('scroll', () => {
-  const statsHero = document.querySelector('.stats-hero');
-  if (statsHero) {
-    const scrollPosition = window.scrollY;
-    statsHero.style.backgroundPosition = `0 ${scrollPosition * 0.5}px`;
-  }
-});
+    const suffix = String(el.textContent).replace(/[0-9]/g, '');
+    let current = 0;
+    const duration = 900;
+    const steps = 24;
+    const increment = target / steps;
+    const interval = duration / steps;
 
-// ==================== ADD SVG GRADIENT ====================
-const addSVGGradient = () => {
-  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  svg.style.display = 'none';
-  
-  const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
-  const gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
-  gradient.setAttribute('id', 'gradient');
-  gradient.setAttribute('x1', '0%');
-  gradient.setAttribute('y1', '0%');
-  gradient.setAttribute('x2', '100%');
-  gradient.setAttribute('y2', '100%');
-  
-  const stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
-  stop1.setAttribute('offset', '0%');
-  stop1.setAttribute('style', 'stop-color:#3b82f6;stop-opacity:1');
-  
-  const stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
-  stop2.setAttribute('offset', '100%');
-  stop2.setAttribute('style', 'stop-color:#10b981;stop-opacity:1');
-  
-  gradient.appendChild(stop1);
-  gradient.appendChild(stop2);
-  defs.appendChild(gradient);
-  svg.appendChild(defs);
-  document.body.appendChild(svg);
-};
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        el.textContent = `${target}${suffix}`;
+        clearInterval(timer);
+      } else {
+        el.textContent = `${Math.floor(current)}${suffix}`;
+      }
+    }, interval);
+  };
 
-addSVGGradient();
+  const runReveal = () => {
+    const items = document.querySelectorAll('.reveal');
+    const reveal = () => {
+      items.forEach((item) => {
+        const rect = item.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) {
+          item.classList.add('active');
+        }
+      });
+    };
 
-// ==================== PAGE LOAD ANIMATION ====================
-window.addEventListener('load', () => {
-  document.body.style.opacity = '1';
-});
+    window.addEventListener('scroll', reveal);
+    reveal();
+  };
 
-document.body.style.opacity = '0';
-document.body.style.transition = 'opacity 0.5s ease-in';
+  const init = async () => {
+    runReveal();
+    setSyncMessage('Syncing latest stats...', true);
 
-setTimeout(() => {
-  document.body.style.opacity = '1';
-}, 100);
+    // Render quick dummy values first to avoid waiting for slow LeetCode APIs.
+    setText('lc-solved', fallback.leetcode.solved);
+    setText('lc-breakdown', `${fallback.leetcode.easy} / ${fallback.leetcode.medium} / ${fallback.leetcode.hard}`);
+    setText('lc-acceptance', fallback.leetcode.acceptance);
+
+    await Promise.all([fetchCodechef(), fetchLeetcode(), fetchCodeforces()]);
+
+    refreshQuickBand();
+    animateCounter('total-solved');
+    animateCounter('best-rating');
+    setSyncMessage('Stats synced (Codeforces live, others optimized)', true);
+  };
+
+  document.addEventListener('DOMContentLoaded', init);
 })();

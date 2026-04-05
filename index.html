@@ -2,403 +2,310 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mukesh Dhadhariya | Full Stack Software Engineer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mukesh Dhadhariya | Software Engineer | AI/ML, Web & Cybersecurity</title>
+  <meta name="description" content="Mukesh Dhadhariya is a software engineer focused on AI/ML systems, full-stack web platforms, and cybersecurity products. Explore projects, technical strengths, coding stats, and contact details." />
+  <meta name="keywords" content="Mukesh Dhadhariya, Software Engineer, AI ML Engineer, Full Stack Developer, Cybersecurity, MERN, Portfolio, Projects" />
+  <meta name="author" content="Mukesh Dhadhariya" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="theme-color" content="#101d2f" />
+  <link rel="canonical" href="https://mukeshdhadhariya.github.io/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Mukesh Dhadhariya | Software Engineer Portfolio" />
+  <meta property="og:description" content="Production-focused engineer building AI/ML products, web applications, and cybersecurity platforms." />
+  <meta property="og:url" content="https://mukeshdhadhariya.github.io/" />
+  <meta property="og:site_name" content="Mukesh Dhadhariya Portfolio" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mukesh Dhadhariya | Software Engineer Portfolio" />
+  <meta name="twitter:description" content="Explore projects in AI/ML, full-stack web engineering, and cybersecurity." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Mukesh Dhadhariya",
+      "url": "https://mukeshdhadhariya.github.io/",
+      "email": "mailto:mukeshdhadhariya1@gmail.com",
+      "telephone": "+91 9783609918",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Nagaur",
+        "addressRegion": "Rajasthan",
+        "addressCountry": "India"
+      },
+      "sameAs": [
+        "https://github.com/mukeshdhadhariya",
+        "https://linkedin.com/in/mukesh-dhadhariya",
+        "https://leetcode.com/u/mukeshhdhadhariya/",
+        "https://codeforces.com/profile/mukesh_dhadhariya",
+        "https://www.codechef.com/users/its_hunter"
+      ],
+      "jobTitle": "Software Engineer",
+      "knowsAbout": ["Artificial Intelligence", "Machine Learning", "Full Stack Web Development", "Cybersecurity", "System Design"]
+    }
+  </script>
 </head>
 <body>
-
-  <!-- Theme Toggle -->
-  <button class="theme-toggle" id="theme-toggle">
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
     <i class="fas fa-moon"></i>
   </button>
 
-  <!-- Navbar -->
-  <nav class="navbar">
+  <nav class="navbar" aria-label="Main navigation">
     <div class="nav-container">
-      <div class="logo">
-        <span class="logo-letter">Mukesh Dhadhariya</span>
-      </div>
-      <ul class="nav-links">
-        <li><a href="#home" class="nav-link">Home</a></li>
+      <a class="logo" href="#home" aria-label="Mukesh Dhadhariya Home">Mukesh <span>Dhadhariya</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links" id="main-nav">
+        <li><a href="#home" class="nav-link active">Home</a></li>
         <li><a href="#about" class="nav-link">About</a></li>
-        <li><a href="codingstats.html" class="nav-link">Coding Stats</a></li>
         <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#achievements" class="nav-link">Achievements</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
+        <li><a href="codingstats.html" class="nav-link nav-cta">Coding Stats</a></li>
       </ul>
-      <div class="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section id="home" class="hero">
-    <div class="stars"></div>
-    <div class="hero-content">
-      <div class="greeting">Hello 👋, I'm</div>
-      <h1 class="hero-title">Mukesh Dhadhariya</h1>
-      <p class="hero-subtitle">Full Stack Software Engineer | MERN | AI/ML | System Design</p>
-      <p class="hero-description">I build scalable, production-grade applications with modern web technologies and solve complex problems with elegant solutions.</p>
-      <div class="hero-buttons">
-        <a href="#projects" class="btn btn-primary">
-          <span>View My Work</span>
-          <i class="fas fa-arrow-right"></i>
-        </a>
-        <a href="resume.pdf" download class="btn btn-secondary">
-          <i class="fas fa-download"></i>
-          <span>Download Resume</span>
-        </a>
-      </div>
-      <div class="social-icons">
-        <a href="https://github.com/mukeshdhadhariya" target="_blank" class="social-icon" title="GitHub">
-          <i class="fab fa-github"></i>
-        </a>
-        <a href="https://linkedin.com/in/mukesh-dhadhariya" target="_blank" class="social-icon" title="LinkedIn">
-          <i class="fab fa-linkedin"></i>
-        </a>
-        <a href="https://codeforces.com/profile/mukesh_coder" target="_blank" class="social-icon" title="CodeForces">
-          <i class="fas fa-code"></i>
-        </a>
-        <a href="mailto:mukeshdhadhariya1@gmail.com" class="social-icon" title="Email">
-          <i class="fas fa-envelope"></i>
-        </a>
-      </div>
-    </div>
-    <div class="scroll-down">
-      <span>Scroll to explore</span>
-      <i class="fas fa-chevron-down"></i>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="section about reveal">
-    <div class="container">
-      <div class="section-header">
-        <h2>About Me</h2>
-        <div class="header-line"></div>
-      </div>
-      
-      <div class="about-content">
-        <div class="about-text">
-          <p>I'm a passionate <strong>Full-Stack Software Engineer</strong> from IIIT Bhagalpur with a strong foundation in building modern web applications and solving complex technical challenges. With expertise in the <strong>MERN stack</strong>, <strong>Next.js</strong>, and <strong>AI/ML</strong>, I create robust, scalable solutions that deliver real-world impact.</p>
-          <p>I worked as a <strong>Software Developer Freelancer at Workafy</strong>, where I design and implement responsive UI components while enhancing user experience. I'm passionate about clean code, system design, and continuous learning.</p>
+  <header class="hero section" id="home">
+    <div class="hero-overlay"></div>
+    <div class="container hero-grid">
+      <div class="hero-content reveal">
+        <p class="kicker">Software Engineer Portfolio</p>
+        <h1>Building high-impact products in AI/ML, Web Engineering, and Cybersecurity.</h1>
+        <p class="hero-subtitle">I design and ship production systems with clean architecture, strong performance, and measurable business impact.</p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">Explore Projects <i class="fas fa-arrow-right"></i></a>
+          <a href="resume.pdf" class="btn btn-secondary" download>Download Resume <i class="fas fa-download"></i></a>
         </div>
-        
+        <div class="hero-social">
+          <a href="https://github.com/mukeshdhadhariya" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://linkedin.com/in/mukesh-dhadhariya" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://leetcode.com/u/mukeshhdhadhariya/" target="_blank" rel="noopener noreferrer" aria-label="LeetCode"><i class="fas fa-laptop-code"></i></a>
+          <a href="mailto:mukeshdhadhariya1@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+
+      <aside class="hero-metrics reveal" aria-label="Quick highlights">
+        <div class="metric-card">
+          <p class="metric-label">Production Impact</p>
+          <p class="metric-value">500+ Users</p>
+          <p class="metric-note">Platforms used in real environments</p>
+        </div>
+        <div class="metric-card">
+          <p class="metric-label">Cloud Infra</p>
+          <p class="metric-value">2000+ Isolated Envs</p>
+          <p class="metric-note">Automated challenge provisioning on AWS</p>
+        </div>
+        <div class="metric-card">
+          <p class="metric-label">Competitive Coding</p>
+          <p class="metric-value">CodeChef 3★</p>
+          <p class="metric-note">Strong DSA and problem-solving discipline</p>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section class="section about" id="about">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="kicker">About</p>
+          <h2>Engineer with a product mindset and execution speed</h2>
+        </div>
+
         <div class="about-grid">
-          <div class="about-card glass-effect">
-            <div class="card-icon">🎓</div>
-            <h3>Education</h3>
-            <p class="card-title">B.Tech CSE</p>
-            <p class="card-subtitle">IIIT Bhagalpur</p>
-            <p class="card-detail">2023 – 2027 | CGPA: 7.37</p>
-          </div>
+          <article class="about-panel reveal">
+            <h3>Profile Summary</h3>
+            <p>I am a Computer Science undergraduate at IIIT Bhagalpur and a full-stack engineer focused on scalable product delivery. My work spans modern frontend systems, robust backend services, cloud-native deployment, and AI-enabled decision workflows.</p>
+            <p>I prioritize code quality, maintainability, and clear communication with teams. The result is software that is reliable under real-world load and easy to evolve over time.</p>
+          </article>
 
-          <div class="about-card glass-effect">
-            <div class="card-icon">💼</div>
-            <h3>Experience</h3>
-            <p class="card-title">Software Developer</p>
-            <p class="card-subtitle">Workafy (Freelancer)</p>
-            <p class="card-detail">Oct 2025 – Dec 2025</p>
-          </div>
-
-          <div class="about-card glass-effect">
-            <div class="card-icon">🏆</div>
-            <h3>Achievements</h3>
-            <p class="card-title">3⭐ CodeChef (1610)</p>
-            <p class="card-subtitle">Software Engineering</p>
-            <p class="card-detail">500+ Users Impacted</p>
-          </div>
-
-          <div class="about-card glass-effect">
-            <div class="card-icon">📍</div>
-            <h3>Location</h3>
-            <p class="card-title">Nagaur, Rajasthan</p>
-            <p class="card-subtitle">India (341520)</p>
-            <p class="card-detail">+91 9783609918</p>
-          </div>
+          <article class="about-panel reveal">
+            <h3>Career Snapshot</h3>
+            <ul class="timeline-list">
+              <li><strong>Software Developer (Freelance)</strong> at Workafy, delivering responsive UI modules and product improvements.</li>
+              <li><strong>B.Tech CSE</strong> at IIIT Bhagalpur (2023 - 2027).</li>
+              <li><strong>Mentorship</strong>: Guided 80+ students in DSA and programming fundamentals.</li>
+            </ul>
+          </article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Skills Section -->
-  <section id="skills" class="section skills reveal">
-    <div class="container">
-      <div class="section-header">
-        <h2>Technical Skills</h2>
-        <div class="header-line"></div>
-      </div>
-
-      <div class="skills-grid">
-        <div class="skill-category">
-          <h3>Languages</h3>
-          <div class="skill-tags">
-            <span class="skill-tag">JavaScript</span>
-            <span class="skill-tag">TypeScript</span>
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">C++</span>
-            <span class="skill-tag">SQL</span>
-            <span class="skill-tag">HTML/CSS</span>
-          </div>
+    <section class="section capabilities" id="projects">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="kicker">Projects</p>
+          <h2>Core capabilities demonstrated through production-style builds</h2>
+          <p class="subtitle">Designed to showcase engineering depth in AI/ML, web systems, and cybersecurity.</p>
         </div>
 
-        <div class="skill-category">
-          <h3>Frontend</h3>
-          <div class="skill-tags">
-            <span class="skill-tag">React.js</span>
-            <span class="skill-tag">Next.js</span>
-            <span class="skill-tag">Shadcn/UI</span>
-            <span class="skill-tag">Tailwind CSS</span>
-            <span class="skill-tag">Vite</span>
-            <span class="skill-tag">Bootstrap</span>
-          </div>
+        <div class="capability-strip reveal" aria-label="Capability tags">
+          <span>AI/ML Systems</span>
+          <span>Full-Stack Web Platforms</span>
+          <span>Cybersecurity Engineering</span>
+          <span>Cloud Architecture</span>
+          <span>System Design</span>
         </div>
 
-        <div class="skill-category">
-          <h3>Backend & Databases</h3>
-          <div class="skill-tags">
-            <span class="skill-tag">Node.js</span>
-            <span class="skill-tag">Express.js</span>
-            <span class="skill-tag">MongoDB</span>
-            <span class="skill-tag">REST APIs</span>
-            <span class="skill-tag">JWT</span>
-            <span class="skill-tag">Socket.IO</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h3>Tools & Technologies</h3>
-          <div class="skill-tags">
-            <span class="skill-tag">Docker</span>
-            <span class="skill-tag">Kubernetes</span>
-            <span class="skill-tag">AWS (EC2, IAM)</span>
-            <span class="skill-tag">Git/GitHub</span>
-            <span class="skill-tag">Linux</span>
-            <span class="skill-tag">Postman</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h3>AI/ML</h3>
-          <div class="skill-tags">
-            <span class="skill-tag">LightGBM</span>
-            <span class="skill-tag">OpenAI API</span>
-            <span class="skill-tag">LangChain</span>
-            <span class="skill-tag">ML Regression</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h3>Coursework</h3>
-          <div class="skill-tags">
-            <span class="skill-tag">DSA</span>
-            <span class="skill-tag">OS</span>
-            <span class="skill-tag">DBMS</span>
-            <span class="skill-tag">Computer Networks</span>
-            <span class="skill-tag">Software Engineering</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects" class="section projects reveal">
-    <div class="container">
-      <div class="section-header">
-        <h2>Featured Projects</h2>
-        <div class="header-line"></div>
-      </div>
-
-      <div class="projects-container">
-        <div class="project-card glass-effect">
-          <div class="project-badge">Production</div>
-          <h3>Cloud CTF Platform</h3>
-          <p class="project-tech">MERN | AWS EC2 | IAM | ALB | Packer | SQL</p>
-          <p class="project-description">Architected and deployed a multi-user, production-grade CTF platform trusted by 500+ users, dynamically provisioning 2000+ isolated AWS EC2 challenge environments with secure IAM-based access, real-time scoring, and auto-scaling infrastructure.</p>
-          <div class="project-stats">
-            <span><i class="fas fa-users"></i> 500+ Users</span>
-            <span><i class="fas fa-server"></i> 2000+ Environments</span>
-          </div>
-        </div>
-
-        <div class="project-card glass-effect">
-          <div class="project-badge">AI/ML</div>
-          <h3>AI-Powered Smart Farming Platform</h3>
-          <p class="project-tech">MERN | LightGBM | AWS | Docker | ML</p>
-          <p class="project-description">Developed an AI-driven agriculture platform using LightGBM regression to predict crop profitability based on soil pH, water quality, climate and mineral composition, with integrated seed sourcing and cultivation guidance.</p>
-          <div class="project-stats">
-            <span><i class="fas fa-leaf"></i> Crop Analytics</span>
-            <span><i class="fas fa-chart-line"></i> Profitability Pred.</span>
-          </div>
-        </div>
-
-        <div class="project-card glass-effect">
-          <div class="project-badge">Full Stack</div>
-          <h3>Social Media Platform</h3>
-          <p class="project-tech">MERN | Shadcn/UI | Socket.IO | Cloudinary | JWT</p>
-          <p class="project-description">Built a scalable social media application with secure JWT authentication, real-time messaging using Socket.IO and optimized front-end architecture — cutting load times by 35% and increasing system responsiveness by 40%.</p>
-          <div class="project-stats">
-            <span><i class="fas fa-bolt"></i> 35% Faster</span>
-            <span><i class="fas fa-message"></i> Real-time Chat</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Achievements Section -->
-  <section class="section achievements reveal">
-    <div class="container">
-      <div class="section-header">
-        <h2>Achievements & Recognition</h2>
-        <div class="header-line"></div>
-      </div>
-
-      <div class="achievements-grid">
-        <div class="achievement-item glass-effect">
-          <div class="achievement-icon"><i class="fas fa-trophy"></i></div>
-          <h3>Tata Imagination Challenge 2024</h3>
-          <p>Semifinalist - Selected among top national participants for presenting a data-driven solution</p>
-        </div>
-
-        <div class="achievement-item glass-effect">
-          <div class="achievement-icon"><i class="fas fa-star"></i></div>
-          <h3>Opcode 2025 - 9th Rank (Institute)</h3>
-          <p>Strong project execution and technical implementation in open-source hackathon</p>
-        </div>
-
-        <div class="achievement-item glass-effect">
-          <div class="achievement-icon"><i class="fas fa-code"></i></div>
-          <h3>Hacktoberfest Supercontributor 2025</h3>
-          <p>Completed 15+ contributions and mentored developers in open-source collaboration</p>
-        </div>
-
-        <div class="achievement-item glass-effect">
-          <div class="achievement-icon"><i class="fas fa-chart-line"></i></div>
-          <h3>CodeChef 3⭐ (1610 Rating)</h3>
-          <p>Top 1000 globally in multiple contests with strong algorithmic problem-solving</p>
-        </div>
-
-        <div class="achievement-item glass-effect">
-          <div class="achievement-icon"><i class="fas fa-book"></i></div>
-          <h3>Student Mentor</h3>
-          <p>Mentored 80+ students in DSA and programming fundamentals at IIIT Bhagalpur</p>
-        </div>
-
-        <div class="achievement-item glass-effect">
-          <div class="achievement-icon"><i class="fas fa-crown"></i></div>
-          <h3>Top Participant Ranking</h3>
-          <p>Ranked among top in Coding Ninjas Slayground 2.0 and Algorithmia ICPC-Style Challenge</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- View Coding Stats Section -->
-  <section class="section coding-stats-cta reveal">
-    <div class="container">
-      <div class="cta-card-large glass-effect">
-        <div class="cta-content">
-          <i class="fas fa-code icon-large"></i>
-          <h2>View My Coding Profile</h2>
-          <p>Explore my detailed competitive programming statistics, real-time data from CodeChef, CodeForces, and more</p>
-          <div class="cta-buttons-group">
-            <a href="codingstats.html" class="btn btn-primary">
-              <i class="fas fa-chart-bar"></i>
-              <span>View Detailed Stats</span>
-            </a>
-            <a href="#about" class="btn btn-secondary">
-              <i class="fas fa-info-circle"></i>
-              <span>Back to Top</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="section contact reveal">
-    <div class="container">
-      <div class="section-header">
-        <h2>Let's Connect</h2>
-        <div class="header-line"></div>
-        <p class="subtitle">Feel free to reach out for collaborations or just a friendly hello</p>
-      </div>
-
-      <div class="contact-content">
-        <div class="contact-info">
-          <div class="info-item">
-            <i class="fas fa-envelope"></i>
-            <div>
-              <h4>Email</h4>
-              <a href="mailto:mukeshdhadhariya1@gmail.com">mukeshdhadhariya1@gmail.com</a>
+        <div class="projects-grid">
+          <article class="project-card reveal">
+            <div class="project-head">
+              <span class="pill">Cybersecurity + Cloud</span>
+              <h3>Cloud CTF Platform</h3>
             </div>
-          </div>
-          <div class="info-item">
-            <i class="fas fa-phone"></i>
-            <div>
-              <h4>Phone</h4>
-              <a href="tel:+919783609918">+91 9783609918</a>
+            <p class="project-tech">MERN, AWS EC2, IAM, ALB, SQL, Packer</p>
+            <p class="project-description">Engineered a multi-tenant CTF platform with secure environment isolation, automated challenge orchestration, and contest scoring for high concurrency events.</p>
+            <ul class="project-points">
+              <li>Trusted by 500+ users in competitive scenarios.</li>
+              <li>Provisioned 2000+ isolated challenge instances securely.</li>
+              <li>Improved reliability with automation-first deployment.</li>
+            </ul>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-head">
+              <span class="pill">AI/ML Product</span>
+              <h3>Smart Farming Intelligence Platform</h3>
             </div>
-          </div>
-          <div class="info-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <div>
-              <h4>Location</h4>
-              <p>Nagaur, Rajasthan, India</p>
+            <p class="project-tech">MERN, LightGBM, Docker, AWS</p>
+            <p class="project-description">Built an AI-driven advisory platform predicting crop profitability from soil and climate signals with actionable recommendations for better yield planning.</p>
+            <ul class="project-points">
+              <li>Integrated ML inference into real application flow.</li>
+              <li>Converted raw agriculture parameters into business decisions.</li>
+              <li>Shipped full stack with deployment-ready architecture.</li>
+            </ul>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-head">
+              <span class="pill">Web Engineering</span>
+              <h3>Realtime Social Platform</h3>
             </div>
+            <p class="project-tech">MERN, Socket.IO, JWT, Cloudinary, Shadcn/UI</p>
+            <p class="project-description">Developed a realtime social application with secure auth, low-latency chat, optimized front-end delivery, and scalable backend communication pipelines.</p>
+            <ul class="project-points">
+              <li>Reduced perceived load time by 35%.</li>
+              <li>Improved responsiveness by 40% with targeted optimizations.</li>
+              <li>Implemented clean modular architecture for maintenance.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="project-cta reveal">
+          <p>Want detailed contest analytics and coding profile data?</p>
+          <a class="btn btn-primary" href="codingstats.html">View Coding Stats <i class="fas fa-chart-line"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section achievements" id="achievements">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="kicker">Achievements</p>
+          <h2>Results That Prove Execution</h2>
+          <p class="subtitle">Contest performance, open-source consistency, and leadership impact.</p>
+        </div>
+
+        <div class="achievements-grid">
+          <article class="achievement-card reveal">
+            <h3>Tata Imagination Challenge 2024</h3>
+            <p class="achievement-tag">National Competition</p>
+            <p>Semifinalist with a data-driven solution among top selected participants.</p>
+          </article>
+
+          <article class="achievement-card reveal">
+            <h3>Opcode 2025 - Rank 9 (Institute)</h3>
+            <p class="achievement-tag">Hackathon Performance</p>
+            <p>Recognized for strong project execution and implementation quality.</p>
+          </article>
+
+          <article class="achievement-card reveal">
+            <h3>Hacktoberfest Supercontributor 2025</h3>
+            <p class="achievement-tag">Open Source</p>
+            <p>Completed 15+ quality contributions and supported peers in contribution workflows.</p>
+          </article>
+
+          <article class="achievement-card reveal">
+            <h3>All India Techfest, IIIT Bhagalpur - Rank 8</h3>
+            <p class="achievement-tag">Annual Technofest Challenge</p>
+            <p>Secured 8th position in an intensive 36-hour national-level competition, demonstrating strong execution under pressure, teamwork, and end-to-end technical delivery.</p>
+          </article>
+
+          <article class="achievement-card reveal">
+            <h3>Student Mentor</h3>
+            <p class="achievement-tag">Leadership</p>
+            <p>Mentored 80+ students in DSA and programming fundamentals at IIIT Bhagalpur.</p>
+          </article>
+
+          <article class="achievement-card reveal">
+            <h3>Top Participant Rankings</h3>
+            <p class="achievement-tag">Contest Track Record</p>
+            <p>Strong placements across Coding Ninjas Slayground 2.0 and ICPC-style challenge events.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="container contact-layout">
+        <div class="contact-panel reveal">
+          <p class="kicker">Contact</p>
+          <h2>Let's Build Something Great</h2>
+          <p class="contact-copy">Open to software engineering roles, AI/ML product work, and high-impact collaborations.</p>
+
+          <div class="contact-list">
+            <a href="mailto:mukeshdhadhariya1@gmail.com"><i class="fas fa-envelope"></i> mukeshdhadhariya1@gmail.com</a>
+            <a href="tel:+919783609918"><i class="fas fa-phone"></i> +91 9783609918</a>
+            <p><i class="fas fa-location-dot"></i> Nagaur, Rajasthan, India</p>
           </div>
         </div>
 
-        <form id="contact-form" class="contact-form glass-effect">
-          <input type="text" id="name" placeholder="Your Name" required />
-          <input type="email" id="email" placeholder="Your Email" required />
-          <select id="subject" required>
-            <option value="">Select Subject</option>
-            <option value="freelance">Freelance Project</option>
-            <option value="collaboration">Collaboration</option>
-            <option value="mentorship">Mentorship</option>
-            <option value="other">Other Inquiry</option>
+        <form id="contact-form" class="contact-form reveal" aria-label="Contact form">
+          <label for="name">Name</label>
+          <input id="name" type="text" name="name" required placeholder="Your full name" />
+
+          <label for="email">Email</label>
+          <input id="email" type="email" name="email" required placeholder="you@example.com" />
+
+          <label for="subject">Subject</label>
+          <select id="subject" name="subject" required>
+            <option value="">Select a topic</option>
+            <option value="Hiring Opportunity">Hiring Opportunity</option>
+            <option value="Freelance Project">Freelance Project</option>
+            <option value="Technical Collaboration">Technical Collaboration</option>
+            <option value="General Inquiry">General Inquiry</option>
           </select>
-          <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
-          <button type="submit" class="btn btn-primary">
-            <span>Send Message</span>
-            <i class="fas fa-paper-plane"></i>
-          </button>
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required placeholder="Share your requirement..."></textarea>
+
+          <button type="submit" class="btn btn-primary" id="contact-submit">Send Message <i class="fas fa-paper-plane"></i></button>
+          <p class="form-note" id="form-note" aria-live="polite"></p>
         </form>
       </div>
+    </section>
+  </main>
 
-      <div class="social-links">
-        <a href="https://github.com/mukeshdhadhariya" target="_blank" class="social-link" title="GitHub">
-          <i class="fab fa-github"></i>
-          <span>GitHub</span>
-        </a>
-        <a href="https://linkedin.com/in/mukesh-dhadhariya" target="_blank" class="social-link" title="LinkedIn">
-          <i class="fab fa-linkedin"></i>
-          <span>LinkedIn</span>
-        </a>
-        <a href="https://codeforces.com/profile/mukesh_coder" target="_blank" class="social-link" title="CodeForces">
-          <i class="fas fa-code"></i>
-          <span>CodeForces</span>
-        </a>
-        <a href="https://instagram.com/mukesh_dhadhariya" target="_blank" class="social-link" title="Instagram">
-          <i class="fab fa-instagram"></i>
-          <span>Instagram</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
   <footer class="footer">
-    <div class="container">
-      <p>© 2025 Mukesh Dhadhariya. All rights reserved.</p>
+    <div class="container footer-inner">
+      <p>© 2026 Mukesh Dhadhariya. Crafted for performance, clarity, and impact.</p>
+      <div class="footer-links">
+        <a href="https://github.com/mukeshdhadhariya" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://linkedin.com/in/mukesh-dhadhariya" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="codingstats.html">Coding Stats</a>
+      </div>
     </div>
   </footer>
 

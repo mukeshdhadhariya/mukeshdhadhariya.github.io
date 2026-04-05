@@ -3,19 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mukesh Dhadhariya | Coding Stats & Profile</title>
+  <title>Mukesh Dhadhariya | Coding Stats</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="codingstats.css" />
 </head>
 <body>
 
-  <!-- Theme Toggle -->
-  <button class="theme-toggle" id="theme-toggle">
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
     <i class="fas fa-moon"></i>
   </button>
 
-  <!-- Navbar -->
   <nav class="navbar">
     <div class="nav-container">
       <div class="logo">
@@ -28,7 +29,7 @@
         <li><a href="index.html#projects" class="nav-link">Projects</a></li>
         <li><a href="index.html#contact" class="nav-link">Contact</a></li>
       </ul>
-      <div class="hamburger">
+      <div class="hamburger" aria-label="Open menu">
         <span></span>
         <span></span>
         <span></span>
@@ -36,511 +37,134 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="stats-hero">
-    <div class="stars"></div>
-    <div class="hero-content">
-      <h1 class="hero-title">Coding Profile & Statistics</h1>
-      <p class="hero-subtitle">Real-time data from multiple competitive programming platforms</p>
-      <div class="status-indicator">
-        <span class="status-dot"></span>
-        <span class="status-text">Fetching live data...</span>
+  <main class="stats-page">
+    <section class="stats-hero reveal">
+      <div class="ambient-glow"></div>
+      <div class="container hero-inner">
+        <p class="hero-kicker">Competitive Programming</p>
+        <h1 class="hero-title">Engineering-grade Coding Profile</h1>
+        <p class="hero-subtitle">Compact. Clean. Live stats from your top platforms with a premium dashboard feel.</p>
+        <div class="sync-pill" id="sync-pill">
+          <span class="pulse-dot"></span>
+          <span id="sync-text">Syncing latest stats...</span>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Overview Cards -->
-  <section class="section stats-overview reveal">
+    <section class="section quick-band reveal">
+      <div class="container quick-grid">
+        <article class="quick-card">
+          <p class="quick-label">Platforms</p>
+          <p class="quick-value">3</p>
+          <p class="quick-note">CodeChef, LeetCode, Codeforces</p>
+        </article>
+        <article class="quick-card">
+          <p class="quick-label">Estimated Solved</p>
+          <p class="quick-value" id="total-solved">--</p>
+          <p class="quick-note">Across tracked profiles</p>
+        </article>
+        <article class="quick-card">
+          <p class="quick-label">Best Rating</p>
+          <p class="quick-value" id="best-rating">--</p>
+          <p class="quick-note">From available live data</p>
+        </article>
+        <article class="quick-card">
+          <p class="quick-label">Last Refresh</p>
+          <p class="quick-value" id="last-refresh">Now</p>
+          <p class="quick-note">Automatic on page load</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="container platform-grid">
+        <article class="platform-card codechef">
+          <div class="platform-top">
+            <div>
+              <p class="platform-name">CodeChef</p>
+              <h2>@its_hunter</h2>
+            </div>
+            <a class="visit-btn" href="https://www.codechef.com/users/its_hunter" target="_blank" rel="noopener noreferrer">
+              Visit
+              <i class="fas fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+          <div class="stats-row">
+            <div class="metric">
+              <p class="metric-label">Current Rating</p>
+              <p class="metric-value" id="cc-rating">Loading</p>
+            </div>
+            <div class="metric">
+              <p class="metric-label">Highest Rating</p>
+              <p class="metric-value" id="cc-max-rating">Loading</p>
+            </div>
+            <div class="metric">
+              <p class="metric-label">Stars</p>
+              <p class="metric-value" id="cc-stars">--</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="platform-card leetcode">
+          <div class="platform-top">
+            <div>
+              <p class="platform-name">LeetCode</p>
+              <h2>@mukeshhdhadhariya</h2>
+            </div>
+            <a class="visit-btn" href="https://leetcode.com/u/mukeshhdhadhariya/" target="_blank" rel="noopener noreferrer">
+              Visit
+              <i class="fas fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+          <div class="stats-row">
+            <div class="metric">
+              <p class="metric-label">Solved</p>
+              <p class="metric-value" id="lc-solved">Loading</p>
+            </div>
+            <div class="metric">
+              <p class="metric-label">Easy / Medium / Hard</p>
+              <p class="metric-value split" id="lc-breakdown">-- / -- / --</p>
+            </div>
+            <div class="metric">
+              <p class="metric-label">Acceptance</p>
+              <p class="metric-value" id="lc-acceptance">--</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="platform-card codeforces">
+          <div class="platform-top">
+            <div>
+              <p class="platform-name">Codeforces</p>
+              <h2>@mukesh_dhadhariya</h2>
+            </div>
+            <a class="visit-btn" href="https://codeforces.com/profile/mukesh_dhadhariya" target="_blank" rel="noopener noreferrer">
+              Visit
+              <i class="fas fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+          <div class="stats-row">
+            <div class="metric">
+              <p class="metric-label">Current Rating</p>
+              <p class="metric-value" id="cf-rating">Loading</p>
+            </div>
+            <div class="metric">
+              <p class="metric-label">Highest Rating</p>
+              <p class="metric-value" id="cf-max-rating">Loading</p>
+            </div>
+            <div class="metric">
+              <p class="metric-label">Problems Solved</p>
+              <p class="metric-value" id="cf-solved">Loading</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer compact-footer">
     <div class="container">
-      <div class="overview-grid">
-        <div class="overview-card glass-effect">
-          <div class="card-icon"><i class="fas fa-star"></i></div>
-          <div class="card-content">
-            <h3>CodeChef Rating</h3>
-            <p class="rating-value" id="codechef-rating">4⭐ (1610+)</p>
-            <p class="card-subtitle">Competitive Programmer</p>
-          </div>
-        </div>
-
-        <div class="overview-card glass-effect">
-          <div class="card-icon"><i class="fas fa-trophy"></i></div>
-          <div class="card-content">
-            <h3>Global Rank</h3>
-            <p class="rating-value" id="global-rank">Top 1000</p>
-            <p class="card-subtitle">Across multiple contests</p>
-          </div>
-        </div>
-
-        <div class="overview-card glass-effect">
-          <div class="card-icon"><i class="fas fa-code"></i></div>
-          <div class="card-content">
-            <h3>Problems Solved</h3>
-            <p class="rating-value" id="problems-solved">150+</p>
-            <p class="card-subtitle">Across all platforms</p>
-          </div>
-        </div>
-
-        <div class="overview-card glass-effect">
-          <div class="card-icon"><i class="fas fa-fire"></i></div>
-          <div class="card-content">
-            <h3>Streak</h3>
-            <p class="rating-value" id="streak">Active</p>
-            <p class="card-subtitle">Regular contributor</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CodeChef Stats -->
-  <section class="section codechef-stats reveal">
-    <div class="container">
-      <div class="section-header">
-        <h2>CodeChef Profile</h2>
-        <div class="header-line"></div>
-      </div>
-
-      <div class="platform-card glass-effect">
-        <div class="platform-header">
-          <h3><i class="fas fa-code"></i> CodeChef Statistics</h3>
-          <a href="https://www.codechef.com/users/mukesh_coder" target="_blank" class="visit-btn">
-            <i class="fas fa-external-link-alt"></i> Visit Profile
-          </a>
-        </div>
-        
-        <div class="stats-grid">
-          <div class="stat-item">
-            <div class="stat-icon codechef-color">
-              <i class="fas fa-star-half-alt"></i>
-            </div>
-            <h4>Current Rating</h4>
-            <p class="stat-value" id="cc-rating">1610</p>
-            <p class="stat-label">4⭐ Programmer</p>
-          </div>
-
-          <div class="stat-item">
-            <div class="stat-icon codechef-color">
-              <i class="fas fa-chart-line"></i>
-            </div>
-            <h4>Max Rating</h4>
-            <p class="stat-value" id="cc-max">1610</p>
-            <p class="stat-label">Personal Best</p>
-          </div>
-
-          <div class="stat-item">
-            <div class="stat-icon codechef-color">
-              <i class="fas fa-checkmark-circle"></i>
-            </div>
-            <h4>Problems Solved</h4>
-            <p class="stat-value" id="cc-solved">89</p>
-            <p class="stat-label">Total submissions</p>
-          </div>
-
-          <div class="stat-item">
-            <div class="stat-icon codechef-color">
-              <i class="fas fa-trophy"></i>
-            </div>
-            <h4>Global Rank</h4>
-            <p class="stat-value" id="cc-rank">Top 1000</p>
-            <p class="stat-label">In contests</p>
-          </div>
-        </div>
-
-        <div class="achievement-list">
-          <h4><i class="fas fa-medal"></i> Achievements</h4>
-          <ul>
-            <li><span class="badge">3⭐</span> Achieved 3-star rating</li>
-            <li><span class="badge">4⭐</span> Recently reached 4-star status</li>
-            <li><span class="badge">TOP 1000</span> Ranked among top 1000 globally</li>
-            <li><span class="badge">CONTEST</span> Participated in 50+ contests</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CodeForces Stats -->
-  <section class="section codeforces-stats reveal">
-    <div class="container">
-      <div class="section-header">
-        <h2>CodeForces Profile</h2>
-        <div class="header-line"></div>
-      </div>
-
-      <div class="platform-card glass-effect">
-        <div class="platform-header">
-          <h3><i class="fas fa-terminal"></i> CodeForces Statistics</h3>
-          <a href="https://codeforces.com/profile/mukesh_coder" target="_blank" class="visit-btn">
-            <i class="fas fa-external-link-alt"></i> Visit Profile
-          </a>
-        </div>
-        
-        <div class="stats-grid">
-          <div class="stat-item">
-            <div class="stat-icon codeforces-color">
-              <i class="fas fa-user-circle"></i>
-            </div>
-            <h4>Current Rating</h4>
-            <p class="stat-value" id="cf-rating">Loading...</p>
-            <p class="stat-label">Pupil/Specialist</p>
-          </div>
-
-          <div class="stat-item">
-            <div class="stat-icon codeforces-color">
-              <i class="fas fa-star"></i>
-            </div>
-            <h4>Max Rating</h4>
-            <p class="stat-value" id="cf-max">Loading...</p>
-            <p class="stat-label">Personal Best</p>
-          </div>
-
-          <div class="stat-item">
-            <div class="stat-icon codeforces-color">
-              <i class="fas fa-check"></i>
-            </div>
-            <h4>Problems Solved</h4>
-            <p class="stat-value" id="cf-solved">Loading...</p>
-            <p class="stat-label">Accepted submissions</p>
-          </div>
-
-          <div class="stat-item">
-            <div class="stat-icon codeforces-color">
-              <i class="fas fa-rocket"></i>
-            </div>
-            <h4>Contests</h4>
-            <p class="stat-value" id="cf-contests">Loading...</p>
-            <p class="stat-label">Participated</p>
-          </div>
-        </div>
-
-        <div class="programming-languages">
-          <h4><i class="fas fa-code"></i> Languages Used</h4>
-          <div class="languages-list">
-            <span class="lang-tag">C++</span>
-            <span class="lang-tag">Python</span>
-            <span class="lang-tag">JavaScript</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- LeetCode Stats -->
-  <section class="section leetcode-stats reveal">
-    <div class="container">
-      <div class="section-header">
-        <h2>LeetCode Profile</h2>
-        <div class="header-line"></div>
-      </div>
-
-      <div class="platform-card glass-effect">
-        <div class="platform-header">
-          <h3><i class="fas fa-laptop-code"></i> LeetCode Statistics</h3>
-          <a href="https://leetcode.com/u/mukeshdhadhariya" target="_blank" class="visit-btn">
-            <i class="fas fa-external-link-alt"></i> Visit Profile
-          </a>
-        </div>
-        
-        <div class="stats-grid">
-          <div class="stat-item">
-            <div class="stat-icon leetcode-color">
-              <i class="fas fa-check-double"></i>
-            </div>
-            <h4>Total Solved</h4>
-            <p class="stat-value" id="lc-solved">60+</p>
-            <p class="stat-label">Problem solving</p>
-          </div>
-
-          <div class="stat-item">
-            <div class="stat-icon leetcode-color">
-              <i class="fas fa-running"></i>
-            </div>
-            <h4>Easy</h4>
-            <p class="stat-value" id="lc-easy">25+</p>
-            <p class="stat-label">Completed</p>
-          </div>
-
-          <div class="stat-item">
-            <div class="stat-icon leetcode-color">
-              <i class="fas fa-fire"></i>
-            </div>
-            <h4>Medium</h4>
-            <p class="stat-value" id="lc-medium">30+</p>
-            <p class="stat-label">Completed</p>
-          </div>
-
-          <div class="stat-item">
-            <div class="stat-icon leetcode-color">
-              <i class="fas fa-skull"></i>
-            </div>
-            <h4>Hard</h4>
-            <p class="stat-value" id="lc-hard">5+</p>
-            <p class="stat-label">Completed</p>
-          </div>
-        </div>
-
-        <div class="difficulty-chart">
-          <h4><i class="fas fa-chart-bar"></i> Problem Distribution</h4>
-          <div class="chart-bars">
-            <div class="chart-bar">
-              <div class="bar-label">Easy</div>
-              <div class="bar-container">
-                <div class="bar" data-difficulty="easy"></div>
-              </div>
-            </div>
-            <div class="chart-bar">
-              <div class="bar-label">Medium</div>
-              <div class="bar-container">
-                <div class="bar" data-difficulty="medium"></div>
-              </div>
-            </div>
-            <div class="chart-bar">
-              <div class="bar-label">Hard</div>
-              <div class="bar-container">
-                <div class="bar" data-difficulty="hard"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- GitHub Stats -->
-  <section class="section github-stats reveal">
-    <div class="container">
-      <div class="section-header">
-        <h2>GitHub Contributions</h2>
-        <div class="header-line"></div>
-      </div>
-
-      <div class="platform-card glass-effect">
-        <div class="platform-header">
-          <h3><i class="fab fa-github"></i> GitHub Profile</h3>
-          <a href="https://github.com/mukeshdhadhariya" target="_blank" class="visit-btn">
-            <i class="fas fa-external-link-alt"></i> Visit Profile
-          </a>
-        </div>
-        
-        <div class="stats-grid">
-          <div class="stat-item">
-            <div class="stat-icon github-color">
-              <i class="fas fa-book"></i>
-            </div>
-            <h4>Public Repos</h4>
-            <p class="stat-value" id="gh-repos">15+</p>
-            <p class="stat-label">Open source</p>
-          </div>
-
-          <div class="stat-item">
-            <div class="stat-icon github-color">
-              <i class="fas fa-star"></i>
-            </div>
-            <h4>Total Stars</h4>
-            <p class="stat-value" id="gh-stars">50+</p>
-            <p class="stat-label">From community</p>
-          </div>
-
-          <div class="stat-item">
-            <div class="stat-icon github-color">
-              <i class="fas fa-code-branch"></i>
-            </div>
-            <h4>Contributions</h4>
-            <p class="stat-value" id="gh-contributions">500+</p>
-            <p class="stat-label">This year</p>
-          </div>
-
-          <div class="stat-item">
-            <div class="stat-icon github-color">
-              <i class="fas fa-users"></i>
-            </div>
-            <h4>Followers</h4>
-            <p class="stat-value" id="gh-followers">50+</p>
-            <p class="stat-label">Community</p>
-          </div>
-        </div>
-
-        <div class="github-section">
-          <h4><i class="fas fa-code"></i> Featured Projects</h4>
-          <div class="projects-mini-grid">
-            <div class="project-mini">
-              <h5>Cloud CTF Platform</h5>
-              <p>Production-grade CTF with 500+ users</p>
-              <div class="project-tags">
-                <span>MERN</span>
-                <span>AWS</span>
-                <span>Docker</span>
-              </div>
-            </div>
-            <div class="project-mini">
-              <h5>Smart Farming AI</h5>
-              <p>AI-driven agriculture analytics platform</p>
-              <div class="project-tags">
-                <span>ML</span>
-                <span>React</span>
-                <span>Backend</span>
-              </div>
-            </div>
-            <div class="project-mini">
-              <h5>Social Media Platform</h5>
-              <p>Real-time messaging with Socket.IO</p>
-              <div class="project-tags">
-                <span>MERN</span>
-                <span>Socket.IO</span>
-                <span>Auth</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Skill Distribution -->
-  <section class="section skill-distribution reveal">
-    <div class="container">
-      <div class="section-header">
-        <h2>Skill Distribution</h2>
-        <div class="header-line"></div>
-      </div>
-
-      <div class="skills-radar">
-        <div class="radar-grid">
-          <div class="skill-node glass-effect">
-            <i class="fas fa-code"></i>
-            <h3>DSA</h3>
-            <div class="progress-ring">
-              <svg viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="40" class="progress-bg"></circle>
-                <circle cx="50" cy="50" r="40" class="progress-fill" style="stroke-dashoffset: 50.26;"></circle>
-              </svg>
-              <span class="percentage">95%</span>
-            </div>
-            <p>Data Structures & Algorithms</p>
-          </div>
-
-          <div class="skill-node glass-effect">
-            <i class="fas fa-globe"></i>
-            <h3>Web Dev</h3>
-            <div class="progress-ring">
-              <svg viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="40" class="progress-bg"></circle>
-                <circle cx="50" cy="50" r="40" class="progress-fill" style="stroke-dashoffset: 50.26;"></circle>
-              </svg>
-              <span class="percentage">90%</span>
-            </div>
-            <p>Full Stack Development</p>
-          </div>
-
-          <div class="skill-node glass-effect">
-            <i class="fas fa-brain"></i>
-            <h3>AI/ML</h3>
-            <div class="progress-ring">
-              <svg viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="40" class="progress-bg"></circle>
-                <circle cx="50" cy="50" r="40" class="progress-fill" style="stroke-dashoffset: 75.4;"></circle>
-              </svg>
-              <span class="percentage">75%</span>
-            </div>
-            <p>Machine Learning</p>
-          </div>
-
-          <div class="skill-node glass-effect">
-            <i class="fas fa-server"></i>
-            <h3>DevOps</h3>
-            <div class="progress-ring">
-              <svg viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="40" class="progress-bg"></circle>
-                <circle cx="50" cy="50" r="40" class="progress-fill" style="stroke-dashoffset: 60.31;"></circle>
-              </svg>
-              <span class="percentage">85%</span>
-            </div>
-            <p>Docker & Kubernetes</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Journey Timeline -->
-  <section class="section journey-timeline reveal">
-    <div class="container">
-      <div class="section-header">
-        <h2>Competitive Programming Journey</h2>
-        <div class="header-line"></div>
-      </div>
-
-      <div class="timeline">
-        <div class="timeline-item glass-effect">
-          <div class="timeline-marker">
-            <i class="fas fa-flag"></i>
-          </div>
-          <div class="timeline-content">
-            <h3>Started Competitive Programming</h3>
-            <p class="timeline-date">2022</p>
-            <p>Began learning DSA and started solving problems on coding platforms.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item glass-effect">
-          <div class="timeline-marker">
-            <i class="fas fa-star"></i>
-          </div>
-          <div class="timeline-content">
-            <h3>Reached 3⭐ on CodeChef</h3>
-            <p class="timeline-date">2023</p>
-            <p>Achieved 3-star rating after consistent practice and contest participation.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item glass-effect">
-          <div class="timeline-marker">
-            <i class="fas fa-trophy"></i>
-          </div>
-          <div class="timeline-content">
-            <h3>Top 1000 Global Rank</h3>
-            <p class="timeline-date">2024</p>
-            <p>Ranked among top 1000 programmers globally in multiple contests.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item glass-effect">
-          <div class="timeline-marker">
-            <i class="fas fa-crown"></i>
-          </div>
-          <div class="timeline-content">
-            <h3>Reached 4⭐ on CodeChef</h3>
-            <p class="timeline-date">2025 - 2026</p>
-            <p>Recently achieved 4-star rating with 1610+ maximum rating.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Call to Action -->
-  <section class="section cta reveal">
-    <div class="container">
-      <div class="cta-card glass-effect">
-        <h2>Let's Build Something Amazing Together</h2>
-        <p>I'm open to freelance projects, collaborations, and full-time opportunities</p>
-        <div class="cta-buttons">
-          <a href="index.html#contact" class="btn btn-primary">
-            <i class="fas fa-envelope"></i> Contact Me
-          </a>
-          <a href="index.html" class="btn btn-secondary">
-            <i class="fas fa-arrow-left"></i> Back to Home
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <p>© 2025 Mukesh Dhadhariya. All rights reserved.</p>
-      <p>Crafted with <span class="heart">❤️</span> using HTML, CSS & JavaScript</p>
+      <p>© 2026 Mukesh Dhadhariya | Competitive Coding Dashboard</p>
     </div>
   </footer>
 
