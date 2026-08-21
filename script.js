@@ -1,178 +1,290 @@
-(() => {
-  const body = document.body;
-  const themeToggle = document.getElementById('theme-toggle');
-  const hamburger = document.getElementById('hamburger') || document.querySelector('.hamburger');
-  const navMenu = document.getElementById('main-nav') || document.querySelector('.nav-links');
-  const navLinks = Array.from(document.querySelectorAll('.nav-link'));
-  const sections = Array.from(document.querySelectorAll('section[id], header[id]'));
-  const contactForm = document.getElementById('contact-form');
-  const formNote = document.getElementById('form-note');
-  const targetEmail = 'mukeshdhadhariya1@gmail.com';
+/* ═══════════════════════════════════════════════════════════
+   Mukesh Dhadhariya — Portfolio Script
+   Premium interactions: theme, nav, animations, counters,
+   cursor glow, scroll progress, contact form
+═══════════════════════════════════════════════════════════ */
 
-  const applyTheme = (mode) => {
-    if (mode === 'light') {
-      body.classList.add('light-mode');
-      if (themeToggle) themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-    } else {
-      body.classList.remove('light-mode');
-      if (themeToggle) themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+(() => {
+  'use strict';
+
+  /* ── DOM ──────────────────────────────────────────────────── */
+  const html          = document.documentElement;
+  const navbar        = document.getElementById('navbar');
+  const themeToggle   = document.getElementById('themeToggle');
+  const menuToggle    = document.getElementById('menuToggle');
+  const navLinks      = document.getElementById('navLinks');
+  const navLinkEls    = Array.from(document.querySelectorAll('.nav-link[data-section]'));
+  const sections      = Array.from(document.querySelectorAll('section[id]'));
+  const scrollProg    = document.getElementById('scrollProgress');
+  const cursorGlow    = document.getElementById('cursorGlow');
+  const contactForm   = document.getElementById('contactForm');
+  const formStatus    = document.getElementById('formStatus');
+  const submitBtn     = document.getElementById('submitBtn');
+
+  /* ─────────────────────────────────────────────────────────
+     THEME — apply early to avoid FOUC
+  ───────────────────────────────────────────────────────── */
+  const getTheme    = () => localStorage.getItem('theme') || 'dark';
+  const applyTheme  = (t) => {
+    html.setAttribute('data-theme', t);
+    localStorage.setItem('theme', t);
+    if (themeToggle) {
+      themeToggle.setAttribute('aria-pressed', t === 'light' ? 'true' : 'false');
     }
   };
 
-  const savedTheme = localStorage.getItem('theme') || 'dark';
-  applyTheme(savedTheme);
+  // Apply stored theme immediately (script runs at end of body)
+  applyTheme(getTheme());
 
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      const isLight = body.classList.toggle('light-mode');
-      localStorage.setItem('theme', isLight ? 'light' : 'dark');
-      applyTheme(isLight ? 'light' : 'dark');
-    });
-  }
+  // Theme toggle
+  themeToggle?.addEventListener('click', () => {
+    applyTheme(getTheme() === 'dark' ? 'light' : 'dark');
+  });
 
-  if (hamburger && navMenu) {
-    const closeMenu = () => {
-      navMenu.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', 'false');
-    };
+  /* ─────────────────────────────────────────────────────────
+     MOBILE MENU
+  ───────────────────────────────────────────────────────── */
+  const closeMenu = () => {
+    navLinks?.classList.remove('open');
+    menuToggle?.setAttribute('aria-expanded', 'false');
+  };
 
-    hamburger.addEventListener('click', () => {
-      const isOpen = navMenu.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', String(isOpen));
-    });
+  menuToggle?.addEventListener('click', () => {
+    const isOpen = navLinks?.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+  });
 
-    navLinks.forEach((link) => {
-      link.addEventListener('click', () => {
-        closeMenu();
-      });
-    });
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.navbar')) closeMenu();
+  });
 
-    document.addEventListener('click', (event) => {
-      const target = event.target;
-      if (!(target instanceof Element)) return;
-      if (target.closest('.nav-container')) return;
-      closeMenu();
-    });
-
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') {
-        closeMenu();
-      }
-    });
-  }
-
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener('click', (event) => {
-      const targetId = anchor.getAttribute('href');
-      if (!targetId || targetId.length < 2) return;
-      const target = document.querySelector(targetId);
+  /* ─────────────────────────────────────────────────────────
+     SMOOTH ANCHOR SCROLL (with offset for fixed navbar)
+  ───────────────────────────────────────────────────────── */
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (!id || id === '#') return;
+      const target = document.querySelector(id);
       if (!target) return;
-
-      event.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      e.preventDefault();
+      closeMenu();
+      const top = target.getBoundingClientRect().top + window.scrollY - 72;
+      window.scrollTo({ top, behavior: 'smooth' });
     });
   });
 
-  if ('IntersectionObserver' in window) {
-    const revealElements = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.2,
-        rootMargin: '0px 0px -20px 0px'
-      }
-    );
+  /* ─────────────────────────────────────────────────────────
+     SCROLL PROGRESS BAR
+  ───────────────────────────────────────────────────────── */
+  const updateProgress = () => {
+    if (!scrollProg) return;
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = scrollable > 0 ? Math.min(100, (window.scrollY / scrollable) * 100) : 0;
+    scrollProg.style.width = pct.toFixed(2) + '%';
+  };
 
-    revealElements.forEach((el) => revealObserver.observe(el));
-  } else {
-    document.querySelectorAll('.reveal').forEach((el) => el.classList.add('active'));
-  }
+  /* ─────────────────────────────────────────────────────────
+     NAVBAR — scrolled state + active links
+  ───────────────────────────────────────────────────────── */
+  const updateNav = () => {
+    navbar?.classList.toggle('scrolled', window.scrollY > 20);
 
-  const updateActiveNav = () => {
-    let currentSection = '';
-
-    sections.forEach((section) => {
-      const top = section.offsetTop - 120;
-      const bottom = top + section.offsetHeight;
-      if (window.scrollY >= top && window.scrollY < bottom) {
-        currentSection = section.getAttribute('id') || '';
-      }
+    let current = '';
+    sections.forEach((sec) => {
+      const rect = sec.getBoundingClientRect();
+      if (rect.top <= 100 && rect.bottom > 100) current = sec.id;
     });
 
-    navLinks.forEach((link) => {
-      const href = link.getAttribute('href') || '';
-      const isAnchor = href.startsWith('#');
-      if (!isAnchor) {
-        link.classList.remove('active');
-        return;
-      }
-      link.classList.toggle('active', href === `#${currentSection}`);
+    navLinkEls.forEach((link) => {
+      link.classList.toggle('active', link.dataset.section === current);
     });
   };
 
-  window.addEventListener('scroll', updateActiveNav, { passive: true });
-  updateActiveNav();
+  /* ─────────────────────────────────────────────────────────
+     SCROLL REVEAL ANIMATIONS
+  ───────────────────────────────────────────────────────── */
+  const animateEls = Array.from(document.querySelectorAll('[data-animate]'));
 
-  if (contactForm) {
-    const renderEmailOptions = (subjectText, bodyText) => {
-      if (!formNote) return;
-
-      const encodedSubject = encodeURIComponent(subjectText);
-      const encodedBody = encodeURIComponent(bodyText);
-      const encodedTo = encodeURIComponent(targetEmail);
-
-      const links = {
-        mailApp: `mailto:${targetEmail}?subject=${encodedSubject}&body=${encodedBody}`,
-        gmail: `https://mail.google.com/mail/?view=cm&fs=1&to=${encodedTo}&su=${encodedSubject}&body=${encodedBody}`,
-        outlook: `https://outlook.office.com/mail/deeplink/compose?to=${encodedTo}&subject=${encodedSubject}&body=${encodedBody}`,
-        yahoo: `https://compose.mail.yahoo.com/?to=${encodedTo}&subject=${encodedSubject}&body=${encodedBody}`
-      };
-
-      formNote.innerHTML = `
-        <div class="email-options" role="group" aria-label="Choose email sender">
-          <p class="email-options-title">Choose where to send:</p>
-          <div class="email-options-grid">
-            <a class="email-action" href="${links.mailApp}"><i class="fas fa-paper-plane"></i> Mail App</a>
-            <a class="email-action" href="${links.gmail}" target="_blank" rel="noopener noreferrer"><i class="fab fa-google"></i> Gmail</a>
-            <a class="email-action" href="${links.outlook}" target="_blank" rel="noopener noreferrer"><i class="fab fa-microsoft"></i> Outlook</a>
-            <a class="email-action" href="${links.yahoo}" target="_blank" rel="noopener noreferrer"><i class="fas fa-envelope-open-text"></i> Yahoo</a>
-            <button class="email-action" type="button" id="copy-email-btn"><i class="fas fa-copy"></i> Copy Email</button>
-          </div>
-        </div>
-      `;
-
-      const copyBtn = document.getElementById('copy-email-btn');
-      if (copyBtn) {
-        copyBtn.addEventListener('click', async () => {
-          try {
-            await navigator.clipboard.writeText(targetEmail);
-            copyBtn.textContent = 'Email Copied';
-          } catch (error) {
-            console.error('Copy failed:', error);
-            copyBtn.textContent = 'Copy Failed';
-          }
+  const revealObs = 'IntersectionObserver' in window
+    ? new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('animated');
+          obs.unobserve(entry.target);
         });
+      }, { threshold: 0.12, rootMargin: '0px 0px -4%' })
+    : null;
+
+  if (revealObs) {
+    animateEls.forEach((el) => revealObs.observe(el));
+  } else {
+    animateEls.forEach((el) => el.classList.add('animated'));
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     ANIMATED STAT COUNTERS (with easing)
+  ───────────────────────────────────────────────────────── */
+  const statCards = Array.from(document.querySelectorAll('.stat-card[data-count]'));
+
+  const animateCounter = (card) => {
+    const target   = Number(card.dataset.count) || 0;
+    const suffix   = card.dataset.suffix || '';
+    const valEl    = card.querySelector('.count-val');
+    const sfxEl    = card.querySelector('.count-sfx');
+    if (!valEl) return;
+    sfxEl && (sfxEl.textContent = '');
+
+    const duration = target > 500 ? 1600 : 1000;
+    const startTs  = performance.now();
+
+    const easeOut  = (t) => 1 - Math.pow(1 - t, 3);
+
+    const tick = (now) => {
+      const elapsed = now - startTs;
+      const t       = Math.min(1, elapsed / duration);
+      const val     = Math.floor(easeOut(t) * target);
+      valEl.textContent = val.toLocaleString();
+      if (t < 1) {
+        requestAnimationFrame(tick);
+      } else {
+        valEl.textContent = target.toLocaleString();
+        sfxEl && (sfxEl.textContent = suffix);
       }
     };
+    requestAnimationFrame(tick);
+  };
 
-    contactForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-
-      const name = document.getElementById('name')?.value?.trim() || '';
-      const email = document.getElementById('email')?.value?.trim() || '';
-      const subject = document.getElementById('subject')?.value?.trim() || '';
-      const message = document.getElementById('message')?.value?.trim() || '';
-
-      const fullSubject = `${subject || 'Portfolio Inquiry'} - ${name}`;
-      const fullBody = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
-      renderEmailOptions(fullSubject, fullBody);
+  if ('IntersectionObserver' in window && statCards.length) {
+    const counterObs = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        animateCounter(entry.target);
+        obs.unobserve(entry.target);
+      });
+    }, { threshold: 0.3 });
+    statCards.forEach((c) => counterObs.observe(c));
+  } else {
+    statCards.forEach((c) => {
+      const val = c.querySelector('.count-val');
+      const sfx = c.querySelector('.count-sfx');
+      if (val) val.textContent = Number(c.dataset.count).toLocaleString();
+      if (sfx) sfx.textContent = c.dataset.suffix || '';
     });
   }
+
+  /* ─────────────────────────────────────────────────────────
+     CURSOR GLOW (desktop only with smooth follow)
+  ───────────────────────────────────────────────────────── */
+  if (cursorGlow && window.matchMedia('(pointer: fine)').matches) {
+    let mouseX = 0, mouseY = 0;
+    let glowX  = 0, glowY  = 0;
+    let rafId  = null;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursorGlow.style.opacity = '1';
+    });
+
+    document.addEventListener('mouseleave', () => {
+      cursorGlow.style.opacity = '0';
+    });
+
+    const smoothGlow = () => {
+      glowX += (mouseX - glowX) * 0.08;
+      glowY += (mouseY - glowY) * 0.08;
+      cursorGlow.style.left = glowX + 'px';
+      cursorGlow.style.top  = glowY + 'px';
+      rafId = requestAnimationFrame(smoothGlow);
+    };
+    smoothGlow();
+  } else if (cursorGlow) {
+    cursorGlow.style.display = 'none';
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     SCROLL EVENT AGGREGATION (single listener)
+  ───────────────────────────────────────────────────────── */
+  window.addEventListener('scroll', () => {
+    updateProgress();
+    updateNav();
+  }, { passive: true });
+
+  // Initial calls
+  updateProgress();
+  updateNav();
+
+  /* ─────────────────────────────────────────────────────────
+     CONTACT FORM — opens mail client with pre-filled fields
+  ───────────────────────────────────────────────────────── */
+  if (contactForm && formStatus && submitBtn) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name    = contactForm.querySelector('[name="name"]')?.value?.trim() || '';
+      const email   = contactForm.querySelector('[name="email"]')?.value?.trim() || '';
+      const message = contactForm.querySelector('[name="message"]')?.value?.trim() || '';
+
+      // Validation
+      if (!name || !email || !message) {
+        formStatus.textContent = 'Please fill in all fields.';
+        formStatus.className   = 'form-status error';
+        return;
+      }
+
+      const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRe.test(email)) {
+        formStatus.textContent = 'Please enter a valid email address.';
+        formStatus.className   = 'form-status error';
+        return;
+      }
+
+      const subject  = encodeURIComponent(`Portfolio Inquiry — ${name}`);
+      const body     = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+      const mailto   = `mailto:mukeshdhadhariya1@gmail.com?subject=${subject}&body=${body}`;
+
+      submitBtn.textContent  = 'Opening email client…';
+      submitBtn.disabled     = true;
+
+      window.location.href = mailto;
+
+      // Give user feedback and reset after a moment
+      setTimeout(() => {
+        formStatus.textContent = '✓ Email client opened! Your message is ready to send.';
+        formStatus.className   = 'form-status success';
+        submitBtn.textContent  = 'Send Message';
+        submitBtn.disabled     = false;
+        contactForm.reset();
+      }, 1000);
+    });
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     CARD TILT EFFECT (stat cards only for fun)
+  ───────────────────────────────────────────────────────── */
+  const tiltCards = Array.from(document.querySelectorAll('.stat-card'));
+
+  tiltCards.forEach((card) => {
+    card.addEventListener('mousemove', (e) => {
+      const rect  = card.getBoundingClientRect();
+      const cx    = rect.left + rect.width / 2;
+      const cy    = rect.top  + rect.height / 2;
+      const dx    = (e.clientX - cx) / (rect.width  / 2);
+      const dy    = (e.clientY - cy) / (rect.height / 2);
+      const tiltX = -(dy * 2).toFixed(2);
+      const tiltY =  (dx * 2).toFixed(2);
+      card.style.transform = `translateY(-2px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+
+  /* ─────────────────────────────────────────────────────────
+     KEYBOARD NAV ACCESSIBILITY
+  ───────────────────────────────────────────────────────── */
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
 })();
