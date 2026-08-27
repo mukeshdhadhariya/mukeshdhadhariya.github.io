@@ -220,7 +220,7 @@
     }
 
     .section {
-      padding: 130px 0;
+      padding: 90px 0;
       position: relative;
     }
 
@@ -440,8 +440,9 @@
        ========================================================= */
 
     .hero {
-      min-height: 100vh;
-      padding: 170px 0 100px;
+      min-height: 80vh;
+      padding: 120px 0 80px;
+      margin-top: -1px;
 
       display: flex;
       align-items: center;
@@ -741,13 +742,13 @@
     .projects {
       display: flex;
       flex-direction: column;
-      gap: 70px;
+      gap: 40px;
     }
 
     .project {
       display: grid;
       grid-template-columns: 1fr 1.25fr;
-      min-height: 520px;
+      min-height: auto;
 
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
@@ -766,7 +767,7 @@
     }
 
     .project-visual {
-      min-height: 100%;
+      min-height: 350px;
 
       display: grid;
       place-items: center;
@@ -907,7 +908,7 @@
     }
 
     .project-content {
-      padding: 55px;
+      padding: 35px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -1583,7 +1584,7 @@
       }
 
       .section {
-        padding: 90px 0;
+        padding: 60px 0;
       }
 
       .nav-inner {
@@ -1633,7 +1634,7 @@
       }
 
       .hero {
-        padding-top: 135px;
+        padding-top: 100px;
       }
 
       .hero h1 {
@@ -1772,6 +1773,12 @@
         opacity: 1;
         transform: none;
       }
+    }
+
+    @keyframes statusPulse {
+      0% { box-shadow: 0 0 0 0 rgba(215, 255, 79, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(215, 255, 79, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(215, 255, 79, 0); }
     }
   </style>
 </head>
@@ -2375,7 +2382,7 @@
             </div>
 
 
-            <div class="project-visual">
+            <div class="project-visual" style="background: linear-gradient(135deg, rgba(255,107,107,0.1), transparent 55%);">
 
               <div class="visual-system">
 
@@ -2402,7 +2409,7 @@
                   EC2
                 </div>
 
-                <div class="visual-core">
+                <div class="visual-core" style="background: #ff6b6b; box-shadow: 0 0 0 18px rgba(255,107,107,0.15); color: #fff;">
                   AWS
                 </div>
 
@@ -2417,7 +2424,7 @@
 
           <article class="project" data-reveal>
 
-            <div class="project-visual">
+            <div class="project-visual" style="background: linear-gradient(135deg, rgba(107,181,255,0.1), transparent 55%);">
 
               <div class="visual-system">
 
@@ -2444,7 +2451,7 @@
                   LLM
                 </div>
 
-                <div class="visual-core">
+                <div class="visual-core" style="background: #6bb5ff; box-shadow: 0 0 0 18px rgba(107,181,255,0.15); color: #000;">
                   RAG
                 </div>
 
@@ -2536,6 +2543,85 @@
                   View Source ↗
                 </a>
 
+              </div>
+
+            </div>
+
+          </article>
+
+          <!-- PROJECT 04 -->
+
+          <article class="project" data-reveal>
+
+            <div class="project-visual" style="background: linear-gradient(135deg, rgba(181,107,255,0.1), transparent 55%);">
+              <div class="visual-system">
+                <div class="visual-grid"></div>
+                <div class="visual-line line-a"></div>
+                <div class="visual-line line-b"></div>
+                <div class="visual-line line-c"></div>
+                <div class="visual-line line-d"></div>
+                <div class="visual-node node-a">RN</div>
+                <div class="visual-node node-b">EXPO</div>
+                <div class="visual-node node-c">PG</div>
+                <div class="visual-node node-d">API</div>
+                <div class="visual-core" style="background: #b56bff; box-shadow: 0 0 0 18px rgba(181,107,255,0.15); color: #fff;">APP</div>
+              </div>
+            </div>
+
+            <div class="project-content">
+
+              <div class="project-index">
+                04 / MOBILE APP
+              </div>
+
+              <h3 class="project-title">
+                Hisab
+              </h3>
+
+              <div class="project-subtitle">
+                Offline-First Expense & Settlement Tracker
+              </div>
+
+              <p class="project-description">
+                A robust mobile application built to track personal expenses and manage peer-to-peer settlements. Features a clean, themeable UI and engineered for performance with an offline-first architecture.
+              </p>
+
+              <div class="project-metrics">
+                <div class="metric">
+                  <strong>Offline</strong>
+                  <span>Sync</span>
+                </div>
+                <div class="metric">
+                  <strong>Clerk</strong>
+                  <span>Auth</span>
+                </div>
+                <div class="metric">
+                  <strong>P2P</strong>
+                  <span>Settlements</span>
+                </div>
+              </div>
+
+              <ul class="project-points">
+                <li>Offline-First architecture with custom sync queue</li>
+                <li>Peer-to-Peer settlement tracking</li>
+                <li>Interactive pie chart analytics</li>
+                <li>Dynamic professional theming (6 themes)</li>
+              </ul>
+
+              <div class="tech-list">
+                <span class="tech">React Native</span>
+                <span class="tech">Expo</span>
+                <span class="tech">Node.js</span>
+                <span class="tech">PostgreSQL</span>
+              </div>
+
+              <div class="project-actions">
+                <a
+                  href="expense-tracker.html"
+                  class="button button-primary"
+                >
+                  View Details ↗
+                </a>
               </div>
 
             </div>
@@ -2735,6 +2821,28 @@
             class="timeline-item"
             data-reveal
           >
+            <div class="timeline-year">
+              2026
+            </div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3>
+                Semifinalist
+              </h3>
+              <div class="timeline-org">
+                Flipkart GRiD 8.0
+              </div>
+              <p>
+                Competed in the prestigious flagship engineering hackathon by Flipkart, tackling real-world e-commerce scaling challenges and securing a spot as a Semifinalist.
+              </p>
+            </div>
+          </article>
+
+
+          <article
+            class="timeline-item"
+            data-reveal
+          >
 
             <div class="timeline-year">
               Nov 2025 — Mar 2026
@@ -2920,97 +3028,112 @@
             Consistent problem solving has shaped how I approach
             algorithms, complexity and engineering trade-offs.
           </p>
+          
+          <div class="sync-pill" id="sync-pill" style="margin-top: 24px; display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 99px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font-size: 0.9rem;">
+            <span class="pulse-dot" style="width: 9px; height: 9px; border-radius: 50%; background: var(--accent); animation: statusPulse 2.2s infinite;"></span>
+            <span id="sync-text">Syncing latest stats...</span>
+          </div>
 
         </header>
 
+        <div class="quick-grid" style="display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-bottom: 20px;" data-reveal>
+          <article class="quick-card" style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px;">
+            <p class="quick-label" style="color: var(--text-muted); font-size: 0.78rem; text-transform: uppercase;">Platforms</p>
+            <p class="quick-value" style="margin-top: 4px; font-weight: 800; font-size: 1.4rem; color: var(--text);">3</p>
+            <p class="quick-note" style="color: var(--text-muted); font-size: 0.82rem; margin-top: 4px;">CodeChef, LeetCode, Codeforces</p>
+          </article>
+          <article class="quick-card" style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px;">
+            <p class="quick-label" style="color: var(--text-muted); font-size: 0.78rem; text-transform: uppercase;">Estimated Solved</p>
+            <p class="quick-value" id="total-solved" style="margin-top: 4px; font-weight: 800; font-size: 1.4rem; color: var(--text);">--</p>
+            <p class="quick-note" style="color: var(--text-muted); font-size: 0.82rem; margin-top: 4px;">Across tracked profiles</p>
+          </article>
+          <article class="quick-card" style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px;">
+            <p class="quick-label" style="color: var(--text-muted); font-size: 0.78rem; text-transform: uppercase;">Best Rating</p>
+            <p class="quick-value" id="best-rating" style="margin-top: 4px; font-weight: 800; font-size: 1.4rem; color: var(--text);">--</p>
+            <p class="quick-note" style="color: var(--text-muted); font-size: 0.82rem; margin-top: 4px;">From available live data</p>
+          </article>
+          <article class="quick-card" style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px;">
+            <p class="quick-label" style="color: var(--text-muted); font-size: 0.78rem; text-transform: uppercase;">Last Refresh</p>
+            <p class="quick-value" id="last-refresh" style="margin-top: 4px; font-weight: 800; font-size: 1.4rem; color: var(--text);">Now</p>
+            <p class="quick-note" style="color: var(--text-muted); font-size: 0.82rem; margin-top: 4px;">Automatic on page load</p>
+          </article>
+        </div>
 
-        <div class="cp-layout">
-
-          <div class="cp-card" data-reveal>
-
-            <div class="cp-platform">
-              CodeChef
+        <div class="platform-grid" style="display: grid; gap: 12px; grid-template-columns: 1fr;" data-reveal>
+          <!-- CodeChef -->
+          <article class="platform-card codechef" style="background: var(--surface); border: 1px solid var(--border); border-left: 4px solid #8b5a2b; border-radius: 20px; padding: 16px;">
+            <div class="platform-top" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+              <div>
+                <p class="platform-name" style="color: var(--accent); font-size: 0.75rem; text-transform: uppercase; font-weight: 600;">CodeChef</p>
+                <h2 style="margin: 4px 0 0; font-size: 1.3rem;">@its_hunter</h2>
+              </div>
+              <a href="https://www.codechef.com/users/its_hunter" target="_blank" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.85rem; border: 1px solid var(--border); border-radius: 12px; background: rgba(255,255,255,0.03);">Visit ↗</a>
             </div>
-
-            <div class="cp-rating">
-              1610<span>*</span>
+            <div class="stats-row" style="display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));">
+              <div class="metric" style="border: 1px solid var(--border); border-radius: 10px; padding: 10px; background: rgba(255,255,255,0.02);">
+                <p class="metric-label" style="color: var(--text-muted); font-size: 0.74rem; text-transform: uppercase;">Current Rating</p>
+                <p class="metric-value" id="cc-rating" style="margin-top: 4px; font-weight: 700; font-size: 1.1rem; color: var(--text);">Loading</p>
+              </div>
+              <div class="metric" style="border: 1px solid var(--border); border-radius: 10px; padding: 10px; background: rgba(255,255,255,0.02);">
+                <p class="metric-label" style="color: var(--text-muted); font-size: 0.74rem; text-transform: uppercase;">Highest Rating</p>
+                <p class="metric-value" id="cc-max-rating" style="margin-top: 4px; font-weight: 700; font-size: 1.1rem; color: var(--text);">Loading</p>
+              </div>
+              <div class="metric" style="border: 1px solid var(--border); border-radius: 10px; padding: 10px; background: rgba(255,255,255,0.02);">
+                <p class="metric-label" style="color: var(--text-muted); font-size: 0.74rem; text-transform: uppercase;">Stars</p>
+                <p class="metric-value" id="cc-stars" style="margin-top: 4px; font-weight: 700; font-size: 1.1rem; color: var(--text);">--</p>
+              </div>
             </div>
+          </article>
 
-            <div class="cp-meta">
-              3-Star Coder · Division 2
+          <!-- LeetCode -->
+          <article class="platform-card leetcode" style="background: var(--surface); border: 1px solid var(--border); border-left: 4px solid #ffa116; border-radius: 20px; padding: 16px;">
+            <div class="platform-top" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+              <div>
+                <p class="platform-name" style="color: var(--accent); font-size: 0.75rem; text-transform: uppercase; font-weight: 600;">LeetCode</p>
+                <h2 style="margin: 4px 0 0; font-size: 1.3rem;">@mukeshhdhadhariya</h2>
+              </div>
+              <a href="https://leetcode.com/u/mukeshhdhadhariya/" target="_blank" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.85rem; border: 1px solid var(--border); border-radius: 12px; background: rgba(255,255,255,0.03);">Visit ↗</a>
             </div>
-
-            <a
-              href="https://www.codechef.com/users/mukeshdhadhari"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="cp-link"
-            >
-              View profile →
-            </a>
-
-          </div>
-
-
-          <div class="cp-card" data-reveal>
-
-            <div class="cp-platform">
-              Codeforces
+            <div class="stats-row" style="display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));">
+              <div class="metric" style="border: 1px solid var(--border); border-radius: 10px; padding: 10px; background: rgba(255,255,255,0.02);">
+                <p class="metric-label" style="color: var(--text-muted); font-size: 0.74rem; text-transform: uppercase;">Solved</p>
+                <p class="metric-value" id="lc-solved" style="margin-top: 4px; font-weight: 700; font-size: 1.1rem; color: var(--text);">Loading</p>
+              </div>
+              <div class="metric" style="border: 1px solid var(--border); border-radius: 10px; padding: 10px; background: rgba(255,255,255,0.02);">
+                <p class="metric-label" style="color: var(--text-muted); font-size: 0.74rem; text-transform: uppercase;">Easy / Medium / Hard</p>
+                <p class="metric-value" id="lc-breakdown" style="margin-top: 4px; font-weight: 700; font-size: 1rem; color: var(--text);">-- / -- / --</p>
+              </div>
+              <div class="metric" style="border: 1px solid var(--border); border-radius: 10px; padding: 10px; background: rgba(255,255,255,0.02);">
+                <p class="metric-label" style="color: var(--text-muted); font-size: 0.74rem; text-transform: uppercase;">Acceptance</p>
+                <p class="metric-value" id="lc-acceptance" style="margin-top: 4px; font-weight: 700; font-size: 1.1rem; color: var(--text);">--</p>
+              </div>
             </div>
+          </article>
 
-            <div class="cp-rating">
-              1321<span>*</span>
+          <!-- Codeforces -->
+          <article class="platform-card codeforces" style="background: var(--surface); border: 1px solid var(--border); border-left: 4px solid #1994ff; border-radius: 20px; padding: 16px;">
+            <div class="platform-top" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+              <div>
+                <p class="platform-name" style="color: var(--accent); font-size: 0.75rem; text-transform: uppercase; font-weight: 600;">Codeforces</p>
+                <h2 style="margin: 4px 0 0; font-size: 1.3rem;">@mukesh_dhadhariya</h2>
+              </div>
+              <a href="https://codeforces.com/profile/mukesh_dhadhariya" target="_blank" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.85rem; border: 1px solid var(--border); border-radius: 12px; background: rgba(255,255,255,0.03);">Visit ↗</a>
             </div>
-
-            <div class="cp-meta">
-              Pupil · Regular Contestant
+            <div class="stats-row" style="display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));">
+              <div class="metric" style="border: 1px solid var(--border); border-radius: 10px; padding: 10px; background: rgba(255,255,255,0.02);">
+                <p class="metric-label" style="color: var(--text-muted); font-size: 0.74rem; text-transform: uppercase;">Current Rating</p>
+                <p class="metric-value" id="cf-rating" style="margin-top: 4px; font-weight: 700; font-size: 1.1rem; color: var(--text);">Loading</p>
+              </div>
+              <div class="metric" style="border: 1px solid var(--border); border-radius: 10px; padding: 10px; background: rgba(255,255,255,0.02);">
+                <p class="metric-label" style="color: var(--text-muted); font-size: 0.74rem; text-transform: uppercase;">Highest Rating</p>
+                <p class="metric-value" id="cf-max-rating" style="margin-top: 4px; font-weight: 700; font-size: 1.1rem; color: var(--text);">Loading</p>
+              </div>
+              <div class="metric" style="border: 1px solid var(--border); border-radius: 10px; padding: 10px; background: rgba(255,255,255,0.02);">
+                <p class="metric-label" style="color: var(--text-muted); font-size: 0.74rem; text-transform: uppercase;">Problems Solved</p>
+                <p class="metric-value" id="cf-solved" style="margin-top: 4px; font-weight: 700; font-size: 1.1rem; color: var(--text);">Loading</p>
+              </div>
             </div>
-
-            <a
-              href="https://codeforces.com/profile/mukeshdhadhariya"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="cp-link"
-            >
-              View profile →
-            </a>
-
-          </div>
-
-
-          <div class="cp-card" data-reveal>
-
-            <div class="cp-platform">
-              Problems Solved
-            </div>
-
-            <div class="cp-rating">
-              500<span>+</span>
-            </div>
-
-            <div class="cp-meta">
-              CodeChef · Codeforces · LeetCode · Coding Ninjas
-            </div>
-
-          </div>
-
-
-          <div class="cp-card" data-reveal>
-
-            <div class="cp-platform">
-              Mentorship
-            </div>
-
-            <div class="cp-rating">
-              80<span>+</span>
-            </div>
-
-            <div class="cp-meta">
-              Students mentored in DSA and competitive programming
-            </div>
-
-          </div>
-
+          </article>
         </div>
 
       </div>
@@ -3714,5 +3837,6 @@
     })();
   </script>
 
+  <script src="codingstats.js"></script>
 </body>
 </html>

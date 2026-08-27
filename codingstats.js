@@ -52,7 +52,7 @@
     if (sync) sync.textContent = text;
     const dot = document.querySelector('.pulse-dot');
     if (dot) {
-      dot.style.background = isSuccess ? 'var(--cs-success)' : '#ff7b7b';
+      dot.style.background = isSuccess ? 'var(--accent)' : 'var(--danger)';
     }
   };
 
@@ -203,18 +203,7 @@
   };
 
   const runReveal = () => {
-    const items = document.querySelectorAll('.reveal');
-    const reveal = () => {
-      items.forEach((item) => {
-        const rect = item.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 80) {
-          item.classList.add('active');
-        }
-      });
-    };
-
-    window.addEventListener('scroll', reveal);
-    reveal();
+    // Reveal handled by index.html script
   };
 
   const init = async () => {
